@@ -352,6 +352,6 @@ certain features (e.g. dueling-Q) that are not enabled in Dopamine DQN.
 As an example of using the `flatten_branched` option, we also used the Rainbow
 algorithm to train on the VisualBanana environment, and provide the results
 below. The same hyperparameters were used as in the GridWorld case, except that
-`replay_history` and `epsilon_decay` were increased to 100000.
+`replay_history` and `epsilon_decay` were increased to 100000. 
 
 ![Dopamine on VisualBanana](images/dopamine_visualbanana_plot.png)

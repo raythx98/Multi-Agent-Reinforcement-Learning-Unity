@@ -71,4 +71,4 @@ pip install -e .
 mlagents-learn
 ```
 
-The final line will test if everything was generated and installed correctly. If it worked, you should see the Unity logo. 
+The final line will test if everything was generated and installed correctly. If it worked, you should see the Unity logo.

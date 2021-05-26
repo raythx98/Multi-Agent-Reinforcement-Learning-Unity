@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 1222199865870203693}
   - component: {fileID: 2106566910232743969}
   m_Layer: 0
-  m_Name: Agent
+  m_Name: Agent Blue
   m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 259154752087955944}
   - component: {fileID: 556732721703992837}
   m_Layer: 0
-  m_Name: Agent (1)
+  m_Name: Agent Red
   m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

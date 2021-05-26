@@ -33,4 +33,4 @@ scene with the ML-Agents SDK, check out the main
   of `UnityEnvironment`.
 - Communication between Unity and the Python `UnityEnvironment` is not secure.
 - On Linux, ports are not released immediately after the communication closes.
-  As such, you cannot reuse ports right after closing a `UnityEnvironment`. 
+  As such, you cannot reuse ports right after closing a `UnityEnvironment`.

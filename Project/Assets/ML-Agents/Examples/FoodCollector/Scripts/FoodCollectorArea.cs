@@ -3,10 +3,10 @@ using Unity.MLAgentsExamples;
 
 public class FoodCollectorArea : Area
 {
-    public GameObject food;
-    public GameObject badFood;
-    public int numFood;
-    public int numBadFood;
+    public GameObject blueFood;
+    public GameObject redFood;
+    public int numBlueFood;
+    public int numRedFood;
     public bool respawnFood;
     public float range;
 
@@ -35,8 +35,8 @@ public class FoodCollectorArea : Area
             }
         }
 
-        CreateFood(numFood, food);
-        CreateFood(numBadFood, badFood);
+        CreateFood(numBlueFood, blueFood);
+        CreateFood(numRedFood, redFood);
     }
 
     public override void ResetArea()

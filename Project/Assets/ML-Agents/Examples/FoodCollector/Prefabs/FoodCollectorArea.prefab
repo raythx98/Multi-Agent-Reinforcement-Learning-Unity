@@ -1371,10 +1371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14a1d4accf634e3fb9b5bc94d023393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: {fileID: 1699568242032636, guid: b59e4a7fd76af471cadd16e90133a084, type: 3}
-  badFood: {fileID: 1853821981215314, guid: 350871b865967466daa1f596193cc22e, type: 3}
-  numFood: 25
-  numBadFood: 25
+  blueFood: {fileID: 1699568242032636, guid: b59e4a7fd76af471cadd16e90133a084, type: 3}
+  redFood: {fileID: 1853821981215314, guid: 350871b865967466daa1f596193cc22e, type: 3}
+  numBlueFood: 25
+  numRedFood: 25
   respawnFood: 1
   range: 45
 --- !u!1 &1904006146885458

@@ -20,8 +20,6 @@ TagManager:
   - switchOn
   - stone
   - target
-  - badFood
-  - food
   - walkableSurface
   - symbol_X
   - symbol_O
@@ -30,6 +28,11 @@ TagManager:
   - purpleAgent
   - purpleGoal
   - tile
+  - redAgent
+  - blueFrozenAgent
+  - redFrozenAgent
+  - blue
+  - red
   layers:
   - Default
   - TransparentFX

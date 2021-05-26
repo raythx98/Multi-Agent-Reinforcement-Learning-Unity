@@ -15,6 +15,7 @@ RELEASE_PATTERN = re.compile(r"release_[0-9]+(_docs)*")
 PIP_INSTALL_PATTERN = re.compile(
     r"(python -m )?pip3* install (?P<package>mlagents(_envs)?)(==[0-9]+\.[0-9]+\.[0-9]+(\.dev[0-9]+)?)?"
 )
+
 TRAINER_INIT_FILE = "ml-agents/mlagents/trainers/__init__.py"
 
 MATCH_ANY = re.compile(r"(?s).*")

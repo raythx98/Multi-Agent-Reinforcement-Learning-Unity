@@ -10,8 +10,6 @@ public class FoodCollectorAgent : Agent
     public GameObject area;
     FoodCollectorArea m_MyArea;
     bool m_Frozen;
-    bool m_Poisoned;
-    bool m_Satiated;
     bool m_Shoot;
     float m_FrozenTime;
     float m_EffectTime;
@@ -76,17 +74,6 @@ public class FoodCollectorAgent : Agent
         if (Time.time > m_FrozenTime + 4f && m_Frozen)
         {
             Unfreeze();
-        }
-        if (Time.time > m_EffectTime + 0.5f)
-        {
-            if (m_Poisoned)
-            {
-                Unpoison();
-            }
-            if (m_Satiated)
-            {
-                Unsatiate();
-            }
         }
 
         var dirToGo = Vector3.zero;
@@ -157,32 +144,6 @@ public class FoodCollectorAgent : Agent
         gameObject.GetComponentInChildren<Renderer>().material = normalMaterial;
     }
 
-    void Poison()
-    {
-        m_Poisoned = true;
-        m_EffectTime = Time.time;
-        gameObject.GetComponentInChildren<Renderer>().material = badMaterial;
-    }
-
-    void Unpoison()
-    {
-        m_Poisoned = false;
-        gameObject.GetComponentInChildren<Renderer>().material = normalMaterial;
-    }
-
-    void Satiate()
-    {
-        m_Satiated = true;
-        m_EffectTime = Time.time;
-        gameObject.GetComponentInChildren<Renderer>().material = goodMaterial;
-    }
-
-    void Unsatiate()
-    {
-        m_Satiated = false;
-        gameObject.GetComponentInChildren<Renderer>().material = normalMaterial;
-    }
-
     public override void OnActionReceived(ActionBuffers actionBuffers)
 
     {
@@ -215,8 +176,6 @@ public class FoodCollectorAgent : Agent
     public override void OnEpisodeBegin()
     {
         Unfreeze();
-        Unpoison();
-        Unsatiate();
         m_Shoot = false;
         m_AgentRb.velocity = Vector3.zero;
         myLaser.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -232,7 +191,6 @@ public class FoodCollectorAgent : Agent
     {
         if (collision.gameObject.CompareTag("food"))
         {
-            Satiate();
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
             AddReward(1f);
             if (contribute)
@@ -242,7 +200,6 @@ public class FoodCollectorAgent : Agent
         }
         if (collision.gameObject.CompareTag("badFood"))
         {
-            Poison();
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
 
             AddReward(-1f);

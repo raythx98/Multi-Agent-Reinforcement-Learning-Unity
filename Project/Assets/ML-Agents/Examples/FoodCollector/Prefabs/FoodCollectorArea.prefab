@@ -791,11 +791,11 @@ MonoBehaviour:
   m_RotateWithAgent: 1
   m_AgentGameObject: {fileID: 0}
   m_DetectableTags:
-  - food
-  - agent
+  - blue
+  - blueAgent
   - wall
-  - badFood
-  - frozenAgent
+  - red
+  - redAgent
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 307
@@ -967,11 +967,11 @@ MonoBehaviour:
   m_RotateWithAgent: 1
   m_AgentGameObject: {fileID: 0}
   m_DetectableTags:
-  - food
-  - agent
+  - blue
+  - blueAgent
   - wall
-  - badFood
-  - frozenAgent
+  - red
+  - redAgent
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 307

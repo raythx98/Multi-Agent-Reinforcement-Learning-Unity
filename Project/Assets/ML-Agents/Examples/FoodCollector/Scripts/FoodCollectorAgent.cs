@@ -12,7 +12,6 @@ public class FoodCollectorAgent : Agent
     bool m_Frozen;
     bool m_Shoot;
     float m_FrozenTime;
-    float m_EffectTime;
     Rigidbody m_AgentRb;
     float m_LaserLength;
     // Speed of agent rotation.
@@ -117,7 +116,7 @@ public class FoodCollectorAgent : Agent
             RaycastHit hit;
             if (Physics.SphereCast(transform.position, 2f, rayDir, out hit, 25f))
             {
-                if (hit.collider.gameObject.CompareTag("agent"))
+                if (hit.collider.gameObject.CompareTag("redAgent") || hit.collider.gameObject.CompareTag("blueAgent"))
                 {
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Freeze();
                 }
@@ -131,7 +130,6 @@ public class FoodCollectorAgent : Agent
 
     void Freeze()
     {
-        gameObject.tag = "frozenAgent";
         m_Frozen = true;
         m_FrozenTime = Time.time;
         gameObject.GetComponentInChildren<Renderer>().material = frozenMaterial;
@@ -140,7 +138,6 @@ public class FoodCollectorAgent : Agent
     void Unfreeze()
     {
         m_Frozen = false;
-        gameObject.tag = "agent";
         gameObject.GetComponentInChildren<Renderer>().material = normalMaterial;
     }
 
@@ -189,7 +186,7 @@ public class FoodCollectorAgent : Agent
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("food"))
+        if (collision.gameObject.CompareTag("blue"))
         {
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
             AddReward(1f);
@@ -198,7 +195,7 @@ public class FoodCollectorAgent : Agent
                 m_FoodCollecterSettings.totalScore += 1;
             }
         }
-        if (collision.gameObject.CompareTag("badFood"))
+        if (collision.gameObject.CompareTag("red"))
         {
             collision.gameObject.GetComponent<FoodLogic>().OnEaten();
 

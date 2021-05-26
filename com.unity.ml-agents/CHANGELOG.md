@@ -773,5 +773,3 @@ vector observations to be used simultaneously. (#3981) Thank you @shakenes !
 ## [0.13.0-preview] - 2020-01-24
 
 ### This is the first release of _Unity Package ML-Agents_.
-
-_Short description of this release_

@@ -713,7 +713,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: f4b8757bd574543b1aa06d9294a5d707, type: 3}
   m_InferenceDevice: 2
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: GridFoodCollector
   TeamId: 0
   m_UseChildSensors: 1

@@ -150,24 +150,11 @@ public class FoodCollectorAgent : Agent
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var continuousActionsOut = actionsOut.ContinuousActions;
-        if (Input.GetKey(KeyCode.D))
-        {
-            continuousActionsOut[2] = 1;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            continuousActionsOut[0] = 1;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            continuousActionsOut[2] = -1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            continuousActionsOut[0] = -1;
-        }
+        continuousActionsOut[0] = Random.Range(-1.0f, 1.0f);
+        continuousActionsOut[1] = Random.Range(-1.0f, 1.0f);
+        continuousActionsOut[2] = Random.Range(-1.0f, 1.0f);
         var discreteActionsOut = actionsOut.DiscreteActions;
-        discreteActionsOut[0] = Input.GetKey(KeyCode.Space) ? 1 : 0;
+        discreteActionsOut[0] = Random.Range(0, 2);
     }
 
     public override void OnEpisodeBegin()

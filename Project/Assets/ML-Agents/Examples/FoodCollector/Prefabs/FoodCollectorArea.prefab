@@ -792,10 +792,10 @@ MonoBehaviour:
   m_AgentGameObject: {fileID: 0}
   m_DetectableTags:
   - blue
-  - blueAgent
+  - agent
   - wall
   - red
-  - redAgent
+  - frozenAgent
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 307
@@ -968,10 +968,10 @@ MonoBehaviour:
   m_AgentGameObject: {fileID: 0}
   m_DetectableTags:
   - blue
-  - blueAgent
+  - agent
   - wall
   - red
-  - redAgent
+  - frozenAgent
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 307

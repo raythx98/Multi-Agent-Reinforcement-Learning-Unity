@@ -5,9 +5,7 @@ using Unity.MLAgents;
 public class FoodCollectorSettings : MonoBehaviour
 {
     [HideInInspector]
-    public GameObject[] blueAgents;
-    [HideInInspector]
-    public GameObject[] redAgents;
+    public GameObject[] agents;
     [HideInInspector]
     public FoodCollectorArea[] listArea;
 
@@ -27,13 +25,11 @@ public class FoodCollectorSettings : MonoBehaviour
         ClearObjects(GameObject.FindGameObjectsWithTag("blue"));
         ClearObjects(GameObject.FindGameObjectsWithTag("red"));
 
-        blueAgents = GameObject.FindGameObjectsWithTag("blueAgent");
-        redAgents = GameObject.FindGameObjectsWithTag("blueAgent");
+        agents = GameObject.FindGameObjectsWithTag("agent");
         listArea = FindObjectsOfType<FoodCollectorArea>();
         foreach (var fa in listArea)
         {
-            fa.ResetFoodArea(blueAgents);
-            fa.ResetFoodArea(redAgents);
+            fa.ResetFoodArea(agents);
         }
 
         totalScore = 0;

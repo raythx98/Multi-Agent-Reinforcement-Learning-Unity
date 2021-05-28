@@ -28,9 +28,6 @@ TagManager:
   - purpleAgent
   - purpleGoal
   - tile
-  - redAgent
-  - blueFrozenAgent
-  - redFrozenAgent
   - blue
   - red
   layers:

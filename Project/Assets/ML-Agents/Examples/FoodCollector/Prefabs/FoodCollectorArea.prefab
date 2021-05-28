@@ -740,8 +740,8 @@ MonoBehaviour:
   moveSpeed: 2
   normalMaterial: {fileID: 2100000, guid: c9fa44c2c3f8ce74ca39a3355ea42631, type: 2}
   badMaterial: {fileID: 2100000, guid: 88b9ae7af2c1748a0a1f63407587a601, type: 2}
-  goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
-  frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
+  goodMaterial: {fileID: 2100000, guid: d8478ac3e0ad7c743a833d89200f1b9d, type: 2}
+  frozenMaterial: {fileID: 2100000, guid: eaad04b0e0dec42229c9cb00a981d7ac, type: 2}
   myLaser: {fileID: 1081721624670010}
   contribute: 0
   useVectorObs: 0
@@ -927,10 +927,10 @@ MonoBehaviour:
   area: {fileID: 1819751139121548}
   turnSpeed: 300
   moveSpeed: 2
-  normalMaterial: {fileID: 2100000, guid: c9fa44c2c3f8ce74ca39a3355ea42631, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 5d30abc5d804b3646a4268bb2fdef0d0, type: 2}
   badMaterial: {fileID: 2100000, guid: 88b9ae7af2c1748a0a1f63407587a601, type: 2}
-  goodMaterial: {fileID: 2100000, guid: c67450f290f3e4897bc40276a619e78d, type: 2}
-  frozenMaterial: {fileID: 2100000, guid: 66163cf35956a4be08e801b750c26f33, type: 2}
+  goodMaterial: {fileID: 2100000, guid: d8478ac3e0ad7c743a833d89200f1b9d, type: 2}
+  frozenMaterial: {fileID: 2100000, guid: eaad04b0e0dec42229c9cb00a981d7ac, type: 2}
   myLaser: {fileID: 1941433838307300}
   contribute: 0
   useVectorObs: 0

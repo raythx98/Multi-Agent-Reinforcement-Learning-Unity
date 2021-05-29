@@ -653,7 +653,7 @@ Transform:
   m_GameObject: {fileID: 1464820575638702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.78, y: 2, z: -9.833}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4863308503741448}
   - {fileID: 4978680367261844}
@@ -737,6 +737,7 @@ MonoBehaviour:
   MaxStep: 5000
   m_isBlue: 1
   area: {fileID: 1819751139121548}
+  attempts: 0
   turnSpeed: 300
   moveSpeed: 2
   normalMaterial: {fileID: 2100000, guid: c9fa44c2c3f8ce74ca39a3355ea42631, type: 2}
@@ -744,7 +745,6 @@ MonoBehaviour:
   blueMaterial: {fileID: 2100000, guid: d8478ac3e0ad7c743a833d89200f1b9d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: eaad04b0e0dec42229c9cb00a981d7ac, type: 2}
   myLaser: {fileID: 1081721624670010}
-  contribute: 1
   useVectorObs: 1
   useVectorFrozenFlag: 0
 --- !u!114 &8297075921230369060
@@ -843,7 +843,7 @@ Transform:
   m_GameObject: {fileID: 1495617568563208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.89, y: 2, z: -9.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 7153509284191841487}
   - {fileID: 4955631281465514}
@@ -927,6 +927,7 @@ MonoBehaviour:
   MaxStep: 5000
   m_isBlue: 0
   area: {fileID: 1819751139121548}
+  attempts: 0
   turnSpeed: 300
   moveSpeed: 2
   normalMaterial: {fileID: 2100000, guid: 5d30abc5d804b3646a4268bb2fdef0d0, type: 2}
@@ -934,7 +935,6 @@ MonoBehaviour:
   blueMaterial: {fileID: 2100000, guid: d8478ac3e0ad7c743a833d89200f1b9d, type: 2}
   frozenMaterial: {fileID: 2100000, guid: eaad04b0e0dec42229c9cb00a981d7ac, type: 2}
   myLaser: {fileID: 1941433838307300}
-  contribute: 1
   useVectorObs: 1
   useVectorFrozenFlag: 0
 --- !u!114 &259154752087955944

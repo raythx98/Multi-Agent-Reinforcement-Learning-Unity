@@ -9,8 +9,12 @@ public class FoodCollectorSettings : MonoBehaviour
     [HideInInspector]
     public FoodCollectorArea[] listArea;
 
-    public int totalScore;
-    public Text scoreText;
+    public GameObject observingBlue;
+    public GameObject observingRed;
+    public int highScore;
+    public int attempts;
+    public Text highscoreText;
+    public Text attemptText;
 
     StatsRecorder m_Recorder;
 
@@ -18,6 +22,11 @@ public class FoodCollectorSettings : MonoBehaviour
     {
         Academy.Instance.OnEnvironmentReset += EnvironmentReset;
         m_Recorder = Academy.Instance.StatsRecorder;
+    }
+
+    public void IncrementAttempts()
+    {
+        attempts++;
     }
 
     void EnvironmentReset()
@@ -31,8 +40,6 @@ public class FoodCollectorSettings : MonoBehaviour
         {
             fa.ResetFoodArea(agents);
         }
-
-        totalScore = 0;
     }
 
     void ClearObjects(GameObject[] objects)
@@ -45,16 +52,25 @@ public class FoodCollectorSettings : MonoBehaviour
 
     public void Update()
     {
-        scoreText.text = $"Score: {totalScore}";
-
-
+        
+        int blue = observingBlue.GetComponent<FoodCollectorAgent>().GetScore();
+        int red = observingRed.GetComponent<FoodCollectorAgent>().GetScore();
+        int total = blue + red;
+        if (total > highScore)
+        {
+            highScore = total;
+        }
+        highscoreText.text = $"Blue score: {blue} \nRed score: {red} \nTotal score: {total} \nHigh score: {highScore}";
+        attemptText.text = $"Attempts: {attempts}";
 
         // Send stats via SideChannel so that they'll appear in TensorBoard.
         // These values get averaged every summary_frequency steps, so we don't
         // need to send every Update() call.
+        /*
         if ((Time.frameCount % 100) == 0)
         {
             m_Recorder.Add("TotalScore", totalScore);
         }
+        */
     }
 }

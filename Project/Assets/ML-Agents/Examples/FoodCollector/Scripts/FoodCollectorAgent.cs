@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 public class FoodCollectorAgent : Agent
 {
-    FoodCollectorSettings m_FoodCollecterSettings;
     public bool m_isBlue;
     public GameObject area;
     FoodCollectorArea m_MyArea;
@@ -26,7 +25,6 @@ public class FoodCollectorAgent : Agent
     public Material blueMaterial;
     public Material frozenMaterial;
     public GameObject myLaser;
-    public bool contribute;
     public bool useVectorObs;
     [Tooltip("Use only the frozen flag in vector observations. If \"Use Vector Obs\" " +
              "is checked, this option has no effect. This option is necessary for the " +
@@ -39,7 +37,6 @@ public class FoodCollectorAgent : Agent
     {
         m_AgentRb = GetComponent<Rigidbody>();
         m_MyArea = area.GetComponent<FoodCollectorArea>();
-        m_FoodCollecterSettings = FindObjectOfType<FoodCollectorSettings>();
         m_ResetParams = Academy.Instance.EnvironmentParameters;
         m_Shoot = false;
         m_Frozen = false;
@@ -87,9 +84,6 @@ public class FoodCollectorAgent : Agent
             Unfreeze();
         }
 
-        var dirToGo = Vector3.zero;
-        var rotateDir = Vector3.zero;
-
         var continuousActions = actionBuffers.ContinuousActions;
         var discreteActions = actionBuffers.DiscreteActions;
 
@@ -99,9 +93,9 @@ public class FoodCollectorAgent : Agent
             var right = Mathf.Clamp(continuousActions[1], -1f, 1f);
             var rotate = Mathf.Clamp(continuousActions[2], -1f, 1f);
 
-            dirToGo = transform.forward * forward;
+            var dirToGo = transform.forward * forward;
             dirToGo += transform.right * right;
-            rotateDir = -transform.up * rotate;
+            var rotateDir = -transform.up * rotate;
 
             var shootCommand = discreteActions[0] > 0;
             if (shootCommand)
@@ -162,9 +156,11 @@ public class FoodCollectorAgent : Agent
         if (m_MyArea.NoMoreFood())
         {
             this.EndEpisode();
+            GameObject.Find("FoodCollectorSettings").GetComponent<FoodCollectorSettings>().IncrementAttempts();
             if (this.score >= 23)
             {
                 AddReward(5f);
+                this.score += 5;
             }
 
         }
@@ -203,22 +199,12 @@ public class FoodCollectorAgent : Agent
             {
                 collision.gameObject.GetComponent<FoodLogic>().OnEaten();
                 AddReward(2f);
-                this.score++;
-                this.score++;
-                if (contribute)
-                {
-                    m_FoodCollecterSettings.totalScore += 2;
-                }
+                this.score += 2;
             } else
             {
                 collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-
                 AddReward(1f);
                 this.score++;
-                if (contribute)
-                {
-                    m_FoodCollecterSettings.totalScore += 1;
-                }
             }
 
         } else if (collision.gameObject.CompareTag("red"))
@@ -227,22 +213,12 @@ public class FoodCollectorAgent : Agent
             {
                 collision.gameObject.GetComponent<FoodLogic>().OnEaten(); // Own colour, double the reward
                 AddReward(2f);
-                this.score++;
-                this.score++;
-                if (contribute)
-                {
-                    m_FoodCollecterSettings.totalScore += 2;
-                }
+                this.score += 2;
             } else
             {
                 collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-
                 AddReward(1f);
                 this.score++;
-                if (contribute)
-                {
-                    m_FoodCollecterSettings.totalScore += 1;
-                }
             }
 
         } else
@@ -257,7 +233,7 @@ public class FoodCollectorAgent : Agent
 
     public void SetAgentScale()
     {
-        float agentScale = m_ResetParams.GetWithDefault("agent_scale", 1.0f);
+        float agentScale = m_ResetParams.GetWithDefault("agent_scale", 1.5f);
         gameObject.transform.localScale = new Vector3(agentScale, agentScale, agentScale);
     }
 

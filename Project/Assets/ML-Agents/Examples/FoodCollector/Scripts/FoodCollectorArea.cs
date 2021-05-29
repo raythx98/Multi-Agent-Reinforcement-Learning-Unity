@@ -9,6 +9,17 @@ public class FoodCollectorArea : Area
     public int numRedFood;
     public bool respawnFood;
     public float range;
+    int remainingFood = 0;
+
+    public bool NoMoreFood()
+    {
+        return remainingFood == 0;
+    }
+
+    public void DecrementFood()
+    {
+        remainingFood--;
+    }
 
     void CreateFood(int num, GameObject type)
     {
@@ -16,7 +27,8 @@ public class FoodCollectorArea : Area
         {
             GameObject f = Instantiate(type, new Vector3(Random.Range(-range, range), 1f,
                 Random.Range(-range, range)) + transform.position,
-                Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 90f)));
+                Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 90f))) as GameObject;
+            f.transform.parent = this.transform;
             f.GetComponent<FoodLogic>().respawn = respawnFood;
             f.GetComponent<FoodLogic>().myArea = this;
         }
@@ -35,8 +47,22 @@ public class FoodCollectorArea : Area
             }
         }
 
+        foreach (Transform child in this.transform)
+        {
+            if (child.CompareTag("red"))
+                GameObject.Destroy(child.gameObject);
+        }
+
+        foreach (Transform child in this.transform)
+        {
+            if (child.CompareTag("blue"))
+                GameObject.Destroy(child.gameObject);
+        }
+
         CreateFood(numBlueFood, blueFood);
         CreateFood(numRedFood, redFood);
+
+        remainingFood = 50;
     }
 
     public override void ResetArea()

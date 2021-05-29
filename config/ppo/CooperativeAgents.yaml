@@ -13,7 +13,7 @@ behaviors:
     network_settings:
       normalize: false
       hidden_units: 256
-      num_layers: 1
+      num_layers: 2
       vis_encode_type: simple
     reward_signals:
       extrinsic:

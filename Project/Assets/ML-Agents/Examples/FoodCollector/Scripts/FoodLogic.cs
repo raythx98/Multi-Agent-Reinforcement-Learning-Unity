@@ -16,6 +16,7 @@ public class FoodLogic : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            myArea.GetComponent<FoodCollectorArea>().DecrementFood();
         }
     }
 }

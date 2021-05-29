@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class FoodCollectorAgent : Agent
 {
     FoodCollectorSettings m_FoodCollecterSettings;
+    public bool m_isBlue;
     public GameObject area;
     FoodCollectorArea m_MyArea;
     bool m_Frozen;
@@ -14,14 +15,15 @@ public class FoodCollectorAgent : Agent
     float m_FrozenTime;
     Rigidbody m_AgentRb;
     float m_LaserLength;
+    int score;
     // Speed of agent rotation.
     public float turnSpeed = 300;
 
     // Speed of agent movement.
     public float moveSpeed = 2;
     public Material normalMaterial;
-    public Material badMaterial;
-    public Material goodMaterial;
+    public Material redMaterial;
+    public Material blueMaterial;
     public Material frozenMaterial;
     public GameObject myLaser;
     public bool contribute;
@@ -39,6 +41,9 @@ public class FoodCollectorAgent : Agent
         m_MyArea = area.GetComponent<FoodCollectorArea>();
         m_FoodCollecterSettings = FindObjectOfType<FoodCollectorSettings>();
         m_ResetParams = Academy.Instance.EnvironmentParameters;
+        m_Shoot = false;
+        m_Frozen = false;
+        score = 0;
         SetResetParameters();
     }
 
@@ -51,11 +56,18 @@ public class FoodCollectorAgent : Agent
             sensor.AddObservation(localVelocity.z);
             sensor.AddObservation(m_Frozen);
             sensor.AddObservation(m_Shoot);
+            sensor.AddObservation(m_isBlue);
         }
         else if (useVectorFrozenFlag)
         {
             sensor.AddObservation(m_Frozen);
+            sensor.AddObservation(m_isBlue);
         }
+    }
+
+    public int GetScore()
+    {
+        return this.score;
     }
 
     public Color32 ToColor(int hexVal)
@@ -70,7 +82,7 @@ public class FoodCollectorAgent : Agent
     {
         m_Shoot = false;
 
-        if (Time.time > m_FrozenTime + 4f && m_Frozen)
+        if (Time.time > m_FrozenTime + 5f && m_Frozen)
         {
             Unfreeze();
         }
@@ -116,7 +128,7 @@ public class FoodCollectorAgent : Agent
             RaycastHit hit;
             if (Physics.SphereCast(transform.position, 2f, rayDir, out hit, 25f))
             {
-                if (hit.collider.gameObject.CompareTag("redAgent") || hit.collider.gameObject.CompareTag("blueAgent"))
+                if (hit.collider.gameObject.CompareTag("agent"))
                 {
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Freeze();
                 }
@@ -130,6 +142,7 @@ public class FoodCollectorAgent : Agent
 
     void Freeze()
     {
+        gameObject.tag = "frozenAgent";
         m_Frozen = true;
         m_FrozenTime = Time.time;
         gameObject.GetComponentInChildren<Renderer>().material = frozenMaterial;
@@ -138,6 +151,7 @@ public class FoodCollectorAgent : Agent
     void Unfreeze()
     {
         m_Frozen = false;
+        gameObject.tag = "agent";
         gameObject.GetComponentInChildren<Renderer>().material = normalMaterial;
     }
 
@@ -145,6 +159,15 @@ public class FoodCollectorAgent : Agent
 
     {
         MoveAgent(actionBuffers);
+        if (m_MyArea.NoMoreFood())
+        {
+            this.EndEpisode();
+            if (this.score >= 23)
+            {
+                AddReward(5f);
+            }
+
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -161,42 +184,75 @@ public class FoodCollectorAgent : Agent
     {
         Unfreeze();
         m_Shoot = false;
+        this.score = 0;
         m_AgentRb.velocity = Vector3.zero;
         myLaser.transform.localScale = new Vector3(0f, 0f, 0f);
         transform.position = new Vector3(Random.Range(-m_MyArea.range, m_MyArea.range),
             2f, Random.Range(-m_MyArea.range, m_MyArea.range))
             + area.transform.position;
         transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
-
+        this.area.GetComponent<FoodCollectorArea>().ResetFoodArea(new GameObject[] {gameObject});
         SetResetParameters();
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("blue"))
+        if (collision.gameObject.CompareTag("blue")) // Own colour, double the reward
         {
-            collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-            AddReward(1f);
-            if (contribute)
+            if (this.m_isBlue)
             {
-                m_FoodCollecterSettings.totalScore += 1;
-            }
-        }
-        if (collision.gameObject.CompareTag("red"))
-        {
-            collision.gameObject.GetComponent<FoodLogic>().OnEaten();
+                collision.gameObject.GetComponent<FoodLogic>().OnEaten();
+                AddReward(2f);
+                this.score++;
+                this.score++;
+                if (contribute)
+                {
+                    m_FoodCollecterSettings.totalScore += 2;
+                }
+            } else
+            {
+                collision.gameObject.GetComponent<FoodLogic>().OnEaten();
 
-            AddReward(-1f);
-            if (contribute)
-            {
-                m_FoodCollecterSettings.totalScore -= 1;
+                AddReward(1f);
+                this.score++;
+                if (contribute)
+                {
+                    m_FoodCollecterSettings.totalScore += 1;
+                }
             }
+
+        } else if (collision.gameObject.CompareTag("red"))
+        {
+            if (!this.m_isBlue)
+            {
+                collision.gameObject.GetComponent<FoodLogic>().OnEaten(); // Own colour, double the reward
+                AddReward(2f);
+                this.score++;
+                this.score++;
+                if (contribute)
+                {
+                    m_FoodCollecterSettings.totalScore += 2;
+                }
+            } else
+            {
+                collision.gameObject.GetComponent<FoodLogic>().OnEaten();
+
+                AddReward(1f);
+                this.score++;
+                if (contribute)
+                {
+                    m_FoodCollecterSettings.totalScore += 1;
+                }
+            }
+
+        } else
+        {
         }
     }
 
     public void SetLaserLengths()
     {
-        m_LaserLength = m_ResetParams.GetWithDefault("laser_length", 1.0f);
+        m_LaserLength = m_ResetParams.GetWithDefault("laser_length", 0.5f);
     }
 
     public void SetAgentScale()

@@ -9,11 +9,11 @@ public class FoodCollectorArea : Area
     public int numRedFood;
     public bool respawnFood;
     public float range;
-    int remainingFood = 0;
+    public int remainingFood = 0;
 
     public bool NoMoreFood()
     {
-        return remainingFood == 0;
+        return remainingFood <= 0;
     }
 
     public void DecrementFood()

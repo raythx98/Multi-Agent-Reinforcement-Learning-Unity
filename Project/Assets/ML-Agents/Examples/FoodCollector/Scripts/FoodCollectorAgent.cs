@@ -156,7 +156,7 @@ public class FoodCollectorAgent : Agent
         if (m_MyArea.NoMoreFood())
         {
             this.EndEpisode();
-            if (this.score >= 23)
+            if (this.score >= 37)
             {
                 AddReward(5f);
                 this.score += 5;
@@ -187,8 +187,11 @@ public class FoodCollectorAgent : Agent
             + area.transform.position;
         transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
         this.area.GetComponent<FoodCollectorArea>().ResetFoodArea(new GameObject[] {gameObject});
-        GameObject.Find("FoodCollectorSettings").GetComponent<FoodCollectorSettings>().IncrementAttempts();
         SetResetParameters();
+        if (this.m_isBlue)
+        {
+            GameObject.Find("FoodCollectorSettings").GetComponent<FoodCollectorSettings>().IncrementAttempts();
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -233,7 +236,7 @@ public class FoodCollectorAgent : Agent
 
     public void SetAgentScale()
     {
-        float agentScale = m_ResetParams.GetWithDefault("agent_scale", 1.5f);
+        float agentScale = m_ResetParams.GetWithDefault("agent_scale", 2f);
         gameObject.transform.localScale = new Vector3(agentScale, agentScale, agentScale);
     }
 

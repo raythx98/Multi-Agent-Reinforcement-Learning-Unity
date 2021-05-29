@@ -734,10 +734,9 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
+  MaxStep: 10000
   m_isBlue: 1
   area: {fileID: 1819751139121548}
-  attempts: 0
   turnSpeed: 300
   moveSpeed: 2
   normalMaterial: {fileID: 2100000, guid: c9fa44c2c3f8ce74ca39a3355ea42631, type: 2}
@@ -924,10 +923,9 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
+  MaxStep: 10000
   m_isBlue: 0
   area: {fileID: 1819751139121548}
-  attempts: 0
   turnSpeed: 300
   moveSpeed: 2
   normalMaterial: {fileID: 2100000, guid: 5d30abc5d804b3646a4268bb2fdef0d0, type: 2}

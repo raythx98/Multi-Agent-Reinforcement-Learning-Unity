@@ -156,7 +156,6 @@ public class FoodCollectorAgent : Agent
         if (m_MyArea.NoMoreFood())
         {
             this.EndEpisode();
-            GameObject.Find("FoodCollectorSettings").GetComponent<FoodCollectorSettings>().IncrementAttempts();
             if (this.score >= 23)
             {
                 AddReward(5f);
@@ -188,6 +187,7 @@ public class FoodCollectorAgent : Agent
             + area.transform.position;
         transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
         this.area.GetComponent<FoodCollectorArea>().ResetFoodArea(new GameObject[] {gameObject});
+        GameObject.Find("FoodCollectorSettings").GetComponent<FoodCollectorSettings>().IncrementAttempts();
         SetResetParameters();
     }
 

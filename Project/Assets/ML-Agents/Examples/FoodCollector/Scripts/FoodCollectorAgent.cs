@@ -150,19 +150,17 @@ public class FoodCollectorAgent : Agent
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
-
     {
         MoveAgent(actionBuffers);
-        if (m_MyArea.NoMoreFood())
-        {
-            this.EndEpisode();
-            if (this.score >= 37)
-            {
-                AddReward(5f);
-                this.score += 5;
-            }
+    }
 
+    public void InformallyEndEpisode(bool extraReward)
+    {
+        if (extraReward)
+        {
+            AddReward(5f);
         }
+        this.EndEpisode();
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -186,10 +184,10 @@ public class FoodCollectorAgent : Agent
             2f, Random.Range(-m_MyArea.range, m_MyArea.range))
             + area.transform.position;
         transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
-        this.area.GetComponent<FoodCollectorArea>().ResetFoodArea(new GameObject[] {gameObject});
         SetResetParameters();
         if (this.m_isBlue)
         {
+            this.area.GetComponent<FoodCollectorArea>().ResetFoodArea(new GameObject[] { gameObject });
             GameObject.Find("FoodCollectorSettings").GetComponent<FoodCollectorSettings>().IncrementAttempts();
         }
     }

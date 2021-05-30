@@ -1373,10 +1373,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueFood: {fileID: 1699568242032636, guid: b59e4a7fd76af471cadd16e90133a084, type: 3}
   redFood: {fileID: 1853821981215314, guid: 350871b865967466daa1f596193cc22e, type: 3}
-  numBlueFood: 15
-  numRedFood: 15
+  blueAgent: {fileID: 1464820575638702}
+  redAgent: {fileID: 1495617568563208}
+  numBlueFood: 25
+  numRedFood: 25
   respawnFood: 0
-  range: 22.5
+  range: 33.75
 --- !u!1 &1904006146885458
 GameObject:
   m_ObjectHideFlags: 0

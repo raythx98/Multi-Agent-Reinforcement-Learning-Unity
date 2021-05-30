@@ -5,15 +5,33 @@ public class FoodCollectorArea : Area
 {
     public GameObject blueFood;
     public GameObject redFood;
+    public GameObject blueAgent;
+    public GameObject redAgent;
     public int numBlueFood;
     public int numRedFood;
     public bool respawnFood;
     public float range;
-    public int remainingFood = 0;
+    int remainingFood = 0;
 
-    public bool NoMoreFood()
+    public void Update()
     {
-        return remainingFood <= 0;
+        if (remainingFood <= 0)
+        {
+            if (blueAgent.GetComponent<FoodCollectorAgent>().GetScore() > redAgent.GetComponent<FoodCollectorAgent>().GetScore())
+            {
+                blueAgent.GetComponent<FoodCollectorAgent>().InformallyEndEpisode(true);
+                redAgent.GetComponent<FoodCollectorAgent>().InformallyEndEpisode(false);
+            } else if (redAgent.GetComponent<FoodCollectorAgent>().GetScore() > blueAgent.GetComponent<FoodCollectorAgent>().GetScore())
+            {
+                blueAgent.GetComponent<FoodCollectorAgent>().InformallyEndEpisode(false);
+                redAgent.GetComponent<FoodCollectorAgent>().InformallyEndEpisode(true);
+            } else
+            {
+                blueAgent.GetComponent<FoodCollectorAgent>().InformallyEndEpisode(false);
+                redAgent.GetComponent<FoodCollectorAgent>().InformallyEndEpisode(false);
+            }
+
+        }
     }
 
     public void DecrementFood()

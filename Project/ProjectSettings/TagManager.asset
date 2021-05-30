@@ -30,6 +30,7 @@ TagManager:
   - tile
   - blue
   - red
+  - area
   layers:
   - Default
   - TransparentFX

@@ -9,8 +9,7 @@ public class ControlSettings : MonoBehaviour
     [HideInInspector]
     public ControlArea[] listArea;
 
-    public GameObject observingBlue;
-    public GameObject observingRed;
+    public GameObject observingArea;
     public int highScore;
     public int attempts;
     public Text highscoreText;
@@ -54,15 +53,15 @@ public class ControlSettings : MonoBehaviour
     public void Update()
     {
         
-        int blue = observingBlue.GetComponent<ControlAgent>().GetScore()[0];
-        int red = observingRed.GetComponent<ControlAgent>().GetScore()[1];
+        int blue = observingArea.GetComponent<ControlAgent>().GetScore()[0];
+        int red = observingArea.GetComponent<ControlAgent>().GetScore()[1];
         int total = blue + red;
         if (total > highScore)
         {
             highScore = total;
         }
         highscoreText.text = $"Blue score: {blue} \nRed score: {red} \nTotal score: {total} \nHigh score: {highScore}";
-        attemptText.text = $"Attempts: {attempts}";
+        attemptText.text = $"Attempts: {attempts - 3}";
 
         // Send stats via SideChannel so that they'll appear in TensorBoard.
         // These values get averaged every summary_frequency steps, so we don't

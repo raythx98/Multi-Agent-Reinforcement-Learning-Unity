@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978680367261844}
+  - component: {fileID: 8733511943772379088}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 4419274671784554}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8733511943772379088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081721624670010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1161164364638642
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +646,11 @@ GameObject:
   - component: {fileID: 4419274671784554}
   - component: {fileID: 65550728419070768}
   - component: {fileID: 54936164982484646}
-  - component: {fileID: 8599610283400040772}
+  - component: {fileID: 114374774605792098}
+  - component: {fileID: 8297075921230369060}
+  - component: {fileID: 1222199865870203693}
+  - component: {fileID: 2106566910232743969}
+  - component: {fileID: 4974426634315036992}
   m_Layer: 0
   m_Name: Agent Blue
   m_TagString: agent
@@ -685,7 +703,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &8599610283400040772
+--- !u!114 &114374774605792098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -694,10 +712,119 @@ MonoBehaviour:
   m_GameObject: {fileID: 1464820575638702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d548b541970ffd9469db5ddddd6fbb68, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 3
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 3
+      BranchSizes: 02000000
+    VectorActionSize: 
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: GridFoodCollector
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
+--- !u!114 &8297075921230369060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464820575638702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
+--- !u!114 &1222199865870203693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464820575638702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6da8f78a394c6ab027688eab81e04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugCommandLineOverride: 
+--- !u!114 &2106566910232743969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464820575638702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a501962d056745d1a30e99146ee39fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: GridSensor
+  m_CellScale: {x: 1, y: 0.01, z: 1}
+  m_GridSize: {x: 40, y: 1, z: 40}
+  m_RotateWithAgent: 1
+  m_AgentGameObject: {fileID: 1464820575638702}
+  m_DetectableTags:
+  - blue
+  - agent
+  - wall
+  - red
+  - frozenAgent
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 307
+  m_MaxColliderBufferSize: 500
+  m_InitialColliderBufferSize: 4
+  m_DebugColors:
+  - {r: 0.40392157, g: 0.7372549, b: 0.41960785, a: 0}
+  - {r: 0.12941177, g: 0.5882353, b: 0.9529412, a: 0}
+  - {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0}
+  - {r: 0.74509805, g: 0.22745098, b: 0.15294118, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  m_GizmoYOffset: 0
+  m_ShowGizmos: 0
+  m_CompressionType: 1
+  m_ObservationStacks: 1
+--- !u!114 &4974426634315036992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464820575638702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079ec7685948ee945b5915ffb4430f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 10000
+  m_isBlue: 1
   area: {fileID: 1819751139121548}
+  turnSpeed: 300
+  moveSpeed: 2
+  normalMaterial: {fileID: 2100000, guid: c9fa44c2c3f8ce74ca39a3355ea42631, type: 2}
+  redMaterial: {fileID: 2100000, guid: 88b9ae7af2c1748a0a1f63407587a601, type: 2}
+  blueMaterial: {fileID: 2100000, guid: d8478ac3e0ad7c743a833d89200f1b9d, type: 2}
+  frozenMaterial: {fileID: 2100000, guid: eaad04b0e0dec42229c9cb00a981d7ac, type: 2}
+  myLaser: {fileID: 1081721624670010}
+  useVectorObs: 1
+  useVectorFrozenFlag: 0
 --- !u!1 &1495617568563208
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +836,10 @@ GameObject:
   - component: {fileID: 4756368533889646}
   - component: {fileID: 65905012397919158}
   - component: {fileID: 54504078365531932}
-  - component: {fileID: 3797321587977307174}
+  - component: {fileID: 114522573150607728}
+  - component: {fileID: 259154752087955944}
+  - component: {fileID: 556732721703992837}
+  - component: {fileID: 6187077252110425599}
   m_Layer: 0
   m_Name: Agent Red
   m_TagString: agent
@@ -762,7 +892,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &3797321587977307174
+--- !u!114 &114522573150607728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -771,10 +901,106 @@ MonoBehaviour:
   m_GameObject: {fileID: 1495617568563208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0c5544fa3ffd845a24c7946b9dfafe, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 3
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 3
+      BranchSizes: 02000000
+    VectorActionSize: 
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: GridFoodCollector
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
+--- !u!114 &259154752087955944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495617568563208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
+--- !u!114 &556732721703992837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495617568563208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a501962d056745d1a30e99146ee39fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: GridSensor
+  m_CellScale: {x: 1, y: 0.01, z: 1}
+  m_GridSize: {x: 40, y: 1, z: 40}
+  m_RotateWithAgent: 1
+  m_AgentGameObject: {fileID: 1495617568563208}
+  m_DetectableTags:
+  - blue
+  - agent
+  - wall
+  - red
+  - frozenAgent
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 307
+  m_MaxColliderBufferSize: 500
+  m_InitialColliderBufferSize: 4
+  m_DebugColors:
+  - {r: 0.40392157, g: 0.7372549, b: 0.41960785, a: 0}
+  - {r: 0.12941177, g: 0.5882353, b: 0.9529412, a: 0}
+  - {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0}
+  - {r: 0.74509805, g: 0.22745098, b: 0.15294118, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  m_GizmoYOffset: 0
+  m_ShowGizmos: 0
+  m_CompressionType: 1
+  m_ObservationStacks: 1
+--- !u!114 &6187077252110425599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495617568563208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079ec7685948ee945b5915ffb4430f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 10000
+  m_isBlue: 0
   area: {fileID: 1819751139121548}
+  turnSpeed: 300
+  moveSpeed: 2
+  normalMaterial: {fileID: 2100000, guid: 5d30abc5d804b3646a4268bb2fdef0d0, type: 2}
+  redMaterial: {fileID: 2100000, guid: 88b9ae7af2c1748a0a1f63407587a601, type: 2}
+  blueMaterial: {fileID: 2100000, guid: d8478ac3e0ad7c743a833d89200f1b9d, type: 2}
+  frozenMaterial: {fileID: 2100000, guid: eaad04b0e0dec42229c9cb00a981d7ac, type: 2}
+  myLaser: {fileID: 1941433838307300}
+  useVectorObs: 1
+  useVectorFrozenFlag: 0
 --- !u!1 &1638806402294040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,12 +1348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4688212428263696}
-  - component: {fileID: 114181230191376748}
-  - component: {fileID: 5995929391278510439}
-  - component: {fileID: 6928555797270484179}
-  - component: {fileID: 2391452138543588375}
-  - component: {fileID: 3890742654626698498}
-  - component: {fileID: 3039223432780645445}
+  - component: {fileID: 2074059553606526381}
   m_Layer: 0
   m_Name: FoodCollectorArea
   m_TagString: Untagged
@@ -1152,7 +1373,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114181230191376748
+--- !u!114 &2074059553606526381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1161,142 +1382,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1819751139121548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e14a1d4accf634e3fb9b5bc94d023393, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d06eb7ab36c5fd4cbfea4ca84b65704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueFood: {fileID: 1699568242032636, guid: b296bf05a5a175a43a84d658c48bb297, type: 3}
-  redFood: {fileID: 1853821981215314, guid: ddf6a59fcc7c3e445bfd14b95788ab9a, type: 3}
+  blueFood: {fileID: 1699568242032636, guid: b59e4a7fd76af471cadd16e90133a084, type: 3}
+  redFood: {fileID: 1853821981215314, guid: 350871b865967466daa1f596193cc22e, type: 3}
   blueAgent: {fileID: 1464820575638702}
   redAgent: {fileID: 1495617568563208}
   numBlueFood: 25
   numRedFood: 25
   respawnFood: 0
   range: 33.75
---- !u!114 &5995929391278510439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819751139121548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BrainParameters:
-    VectorObservationSize: 8
-    NumStackedVectorObservations: 1
-    m_ActionSpec:
-      m_NumContinuousActions: 6
-      BranchSizes: 0200000002000000
-    VectorActionSize: 
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 0
-    hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: ControllerAgent
-  TeamId: 0
-  m_UseChildSensors: 1
-  m_UseChildActuators: 1
-  m_ObservableAttributeHandling: 0
---- !u!114 &6928555797270484179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819751139121548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66e6845309d241c78a6d77ee2567928, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 10000
-  area: {fileID: 1819751139121548}
-  blueAgent: {fileID: 1464820575638702}
-  redAgent: {fileID: 1495617568563208}
-  turnSpeed: 300
-  moveSpeed: 2
-  blueAgentMaterial: {fileID: 2100000, guid: c9fa44c2c3f8ce74ca39a3355ea42631, type: 2}
-  redAgentMaterial: {fileID: 2100000, guid: 5d30abc5d804b3646a4268bb2fdef0d0, type: 2}
-  redMaterial: {fileID: 2100000, guid: 88b9ae7af2c1748a0a1f63407587a601, type: 2}
-  blueMaterial: {fileID: 2100000, guid: d8478ac3e0ad7c743a833d89200f1b9d, type: 2}
-  frozenMaterial: {fileID: 2100000, guid: eaad04b0e0dec42229c9cb00a981d7ac, type: 2}
-  blueLaser: {fileID: 1081721624670010}
-  redLaser: {fileID: 1941433838307300}
-  useVectorObs: 1
-  useVectorFrozenFlag: 0
---- !u!114 &2391452138543588375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819751139121548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a6da8f78a394c6ab027688eab81e04d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugCommandLineOverride: 
---- !u!114 &3890742654626698498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819751139121548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  TakeActionsBetweenDecisions: 1
---- !u!114 &3039223432780645445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819751139121548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a501962d056745d1a30e99146ee39fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: GridSensor
-  m_CellScale: {x: 1, y: 0.01, z: 1}
-  m_GridSize: {x: 40, y: 1, z: 40}
-  m_RotateWithAgent: 1
-  m_AgentGameObject: {fileID: 1819751139121548}
-  m_DetectableTags:
-  - blue
-  - agent
-  - wall
-  - red
-  - frozenAgent
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 307
-  m_MaxColliderBufferSize: 500
-  m_InitialColliderBufferSize: 4
-  m_DebugColors:
-  - {r: 0.40392157, g: 0.7372549, b: 0.41960785, a: 0}
-  - {r: 0.12941177, g: 0.5882353, b: 0.9529412, a: 0}
-  - {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0}
-  - {r: 0.74509805, g: 0.22745098, b: 0.15294118, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  m_GizmoYOffset: 0
-  m_ShowGizmos: 0
-  m_CompressionType: 1
-  m_ObservationStacks: 1
 --- !u!1 &1904006146885458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4955631281465514}
+  - component: {fileID: 8767898798676870597}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -1415,6 +1512,19 @@ Transform:
   m_Father: {fileID: 4756368533889646}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8767898798676870597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941433838307300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1946057994373464
 GameObject:
   m_ObjectHideFlags: 0

@@ -64,13 +64,9 @@ public class ControlAgent : Agent
             var blueVelocity = transform.InverseTransformDirection(m_BlueAgentRb.velocity);
             sensor.AddObservation(blueVelocity.x);
             sensor.AddObservation(blueVelocity.z);
-            sensor.AddObservation(m_BlueFrozen);
-            sensor.AddObservation(m_BlueShoot);
             var redVelocity = transform.InverseTransformDirection(m_RedAgentRb.velocity);
             sensor.AddObservation(redVelocity.x);
             sensor.AddObservation(redVelocity.z);
-            sensor.AddObservation(m_RedFrozen);
-            sensor.AddObservation(m_RedShoot);
         }
         else if (useVectorFrozenFlag)
         {
@@ -198,7 +194,7 @@ public class ControlAgent : Agent
         }
         else
         {
-            blueLaser.transform.localScale = new Vector3(0f, 0f, 0f);
+            redLaser.transform.localScale = new Vector3(0f, 0f, 0f);
         }
     }
 
@@ -271,10 +267,14 @@ public class ControlAgent : Agent
         blueAgent.transform.position = new Vector3(Random.Range(-m_MyArea.range, m_MyArea.range),
             2f, Random.Range(-m_MyArea.range, m_MyArea.range))
             + area.transform.position;
+        redAgent.transform.position = new Vector3(Random.Range(-m_MyArea.range, m_MyArea.range),
+            2f, Random.Range(-m_MyArea.range, m_MyArea.range))
+            + area.transform.position;
+        blueAgent.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
         redAgent.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
         area.GetComponent<ControlArea>().ResetFoodArea();
         numFoodRemaining = 50;
-        GameObject.Find("FoodCollectorSettings").GetComponent<FoodCollectorSettings>().IncrementAttempts();
+        GameObject.Find("FoodCollectorSettings").GetComponent<ControlSettings>().IncrementAttempts();
         SetResetParameters();
     }
 
@@ -308,7 +308,8 @@ public class ControlAgent : Agent
     public void SetAgentScale()
     {
         float agentScale = m_ResetParams.GetWithDefault("agent_scale", 2f);
-        gameObject.transform.localScale = new Vector3(agentScale, agentScale, agentScale);
+        blueAgent.transform.localScale = new Vector3(agentScale, agentScale, agentScale);
+        redAgent.transform.localScale = new Vector3(agentScale, agentScale, agentScale);
     }
 
     public void SetResetParameters()

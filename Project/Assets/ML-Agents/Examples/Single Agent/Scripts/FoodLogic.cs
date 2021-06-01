@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FoodLogic : MonoBehaviour
 {
-    public bool respawn;
     public FoodCollectorArea myArea;
 
     public void OnEaten()

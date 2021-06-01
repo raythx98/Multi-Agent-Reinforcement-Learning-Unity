@@ -51,13 +51,10 @@ public class FoodCollectorAgent : Agent
             var localVelocity = transform.InverseTransformDirection(m_AgentRb.velocity);
             sensor.AddObservation(localVelocity.x);
             sensor.AddObservation(localVelocity.z);
-            sensor.AddObservation(m_Frozen);
-            sensor.AddObservation(m_Shoot);
             sensor.AddObservation(m_isBlue);
         }
         else if (useVectorFrozenFlag)
         {
-            sensor.AddObservation(m_Frozen);
             sensor.AddObservation(m_isBlue);
         }
     }
@@ -124,6 +121,7 @@ public class FoodCollectorAgent : Agent
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
+                    AddReward(1f); // Encourage agents to shoot each other
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Freeze();
                 }
             }
@@ -158,7 +156,7 @@ public class FoodCollectorAgent : Agent
     {
         if (extraReward)
         {
-            AddReward(5f);
+            AddReward(3f); // Reward for winning
         }
         this.EndEpisode();
     }
@@ -187,7 +185,7 @@ public class FoodCollectorAgent : Agent
         SetResetParameters();
         if (this.m_isBlue)
         {
-            this.area.GetComponent<FoodCollectorArea>().ResetFoodArea(new GameObject[] { gameObject });
+            this.area.GetComponent<FoodCollectorArea>().ResetFoodArea();
             GameObject.Find("FoodCollectorSettings").GetComponent<FoodCollectorSettings>().IncrementAttempts();
         }
     }

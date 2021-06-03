@@ -31,11 +31,12 @@ TagManager:
   - blue
   - red
   - area
+  - laser
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - agent
   - Water
   - UI
   - 

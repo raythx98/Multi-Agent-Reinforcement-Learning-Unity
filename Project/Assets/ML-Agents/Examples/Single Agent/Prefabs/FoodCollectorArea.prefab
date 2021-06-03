@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1081721624670010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.55}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.4}
   m_Children:
   - {fileID: 4360876370799098}
   - {fileID: 4909090634432460}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 65354505920864336}
   - component: {fileID: 23231680800386488}
   - component: {fileID: 2297454307237680111}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: laser
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 65319547882626302}
   - component: {fileID: 23655279563649666}
   - component: {fileID: 1811439015319953032}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: laser
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 65825948695401364}
   - component: {fileID: 23804249467165384}
   - component: {fileID: 1092534617632689861}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (7)
   m_TagString: laser
   m_Icon: {fileID: 0}
@@ -686,9 +686,10 @@ GameObject:
   - component: {fileID: 114374774605792098}
   - component: {fileID: 8297075921230369060}
   - component: {fileID: 1222199865870203693}
-  - component: {fileID: 2106566910232743969}
   - component: {fileID: 4974426634315036992}
-  m_Layer: 0
+  - component: {fileID: 8751563457701015629}
+  - component: {fileID: 5788412034585081052}
+  m_Layer: 3
   m_Name: Agent Blue
   m_TagString: agent
   m_Icon: {fileID: 0}
@@ -704,7 +705,7 @@ Transform:
   m_GameObject: {fileID: 1464820575638702}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.78, y: 2, z: -9.833}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4863308503741448}
   - {fileID: 4978680367261844}
@@ -797,44 +798,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugCommandLineOverride: 
---- !u!114 &2106566910232743969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464820575638702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a501962d056745d1a30e99146ee39fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: GridSensor
-  m_CellScale: {x: 1, y: 0.01, z: 1}
-  m_GridSize: {x: 40, y: 1, z: 40}
-  m_RotateWithAgent: 1
-  m_AgentGameObject: {fileID: 1464820575638702}
-  m_DetectableTags:
-  - blue
-  - agent
-  - wall
-  - red
-  - frozenAgent
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 307
-  m_MaxColliderBufferSize: 500
-  m_InitialColliderBufferSize: 4
-  m_DebugColors:
-  - {r: 0.40392157, g: 0.7372549, b: 0.41960785, a: 0}
-  - {r: 0.12941177, g: 0.5882353, b: 0.9529412, a: 0}
-  - {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0}
-  - {r: 0.74509805, g: 0.22745098, b: 0.15294118, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  m_GizmoYOffset: 0
-  m_ShowGizmos: 0
-  m_CompressionType: 1
-  m_ObservationStacks: 1
 --- !u!114 &4974426634315036992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,6 +825,64 @@ MonoBehaviour:
   myLaser: {fileID: 1081721624670010}
   useVectorObs: 1
   useVectorFrozenFlag: 0
+--- !u!114 &8751563457701015629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464820575638702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - blue
+  - agent
+  - wall
+  - red
+  - frozenAgent
+  m_RaysPerDirection: 4
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.6
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
+--- !u!114 &5788412034585081052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464820575638702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor2
+  m_DetectableTags:
+  - agent
+  m_RaysPerDirection: 1
+  m_MaxRayDegrees: 2
+  m_SphereCastRadius: 0.3
+  m_RayLength: 8.6
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &1495617568563208
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,9 +896,10 @@ GameObject:
   - component: {fileID: 54504078365531932}
   - component: {fileID: 114522573150607728}
   - component: {fileID: 259154752087955944}
-  - component: {fileID: 556732721703992837}
   - component: {fileID: 6187077252110425599}
-  m_Layer: 0
+  - component: {fileID: 5421324001840600943}
+  - component: {fileID: 625555677925179522}
+  m_Layer: 3
   m_Name: Agent Red
   m_TagString: agent
   m_Icon: {fileID: 0}
@@ -893,7 +915,7 @@ Transform:
   m_GameObject: {fileID: 1495617568563208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.89, y: 2, z: -9.9}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7153509284191841487}
   - {fileID: 4955631281465514}
@@ -973,44 +995,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
---- !u!114 &556732721703992837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495617568563208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a501962d056745d1a30e99146ee39fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: GridSensor
-  m_CellScale: {x: 1, y: 0.01, z: 1}
-  m_GridSize: {x: 40, y: 1, z: 40}
-  m_RotateWithAgent: 1
-  m_AgentGameObject: {fileID: 1495617568563208}
-  m_DetectableTags:
-  - blue
-  - agent
-  - wall
-  - red
-  - frozenAgent
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 307
-  m_MaxColliderBufferSize: 500
-  m_InitialColliderBufferSize: 4
-  m_DebugColors:
-  - {r: 0.40392157, g: 0.7372549, b: 0.41960785, a: 0}
-  - {r: 0.12941177, g: 0.5882353, b: 0.9529412, a: 0}
-  - {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0}
-  - {r: 0.74509805, g: 0.22745098, b: 0.15294118, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  m_GizmoYOffset: 0
-  m_ShowGizmos: 0
-  m_CompressionType: 1
-  m_ObservationStacks: 1
 --- !u!114 &6187077252110425599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,6 +1022,64 @@ MonoBehaviour:
   myLaser: {fileID: 1941433838307300}
   useVectorObs: 1
   useVectorFrozenFlag: 0
+--- !u!114 &5421324001840600943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495617568563208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - blue
+  - agent
+  - wall
+  - red
+  - frozenAgent
+  m_RaysPerDirection: 4
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.6
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
+--- !u!114 &625555677925179522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495617568563208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor2
+  m_DetectableTags:
+  - agent
+  m_RaysPerDirection: 1
+  m_MaxRayDegrees: 2
+  m_SphereCastRadius: 0.3
+  m_RayLength: 8.6
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &1638806402294040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1174,7 @@ GameObject:
   - component: {fileID: 65424810526260318}
   - component: {fileID: 23325276038369808}
   - component: {fileID: 4688491966047700349}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (7)
   m_TagString: laser
   m_Icon: {fileID: 0}
@@ -1558,7 +1600,7 @@ Transform:
   m_GameObject: {fileID: 1941433838307300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.55}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.4}
   m_Children:
   - {fileID: 4967556344437934}
   - {fileID: 4815655783331066}
@@ -1627,7 +1669,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294950911
+    m_Bits: 307
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

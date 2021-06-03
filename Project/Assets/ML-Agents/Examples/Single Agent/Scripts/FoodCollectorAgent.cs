@@ -113,22 +113,7 @@ public class FoodCollectorAgent : Agent
 
         if (m_Shoot)
         {
-            myLaser.transform.localScale = new Vector3(1f, 1f, m_LaserLength);
-
-            /*
-            var myTransform = transform;
-            myLaser.transform.localScale = new Vector3(1f, 1f, m_LaserLength);
-            var rayDir = 25.0f * myTransform.forward;
-            Debug.DrawRay(myTransform.position, rayDir, Color.red, 0f, true);
-            RaycastHit hit;
-            if (Physics.SphereCast(transform.position, 2f, rayDir, out hit, 25f))
-            {
-                if (hit.collider.gameObject.CompareTag("agent"))
-                {
-                    AddReward(1f); // Encourage agents to shoot each other
-                    hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Freeze();
-                }
-            } */
+            myLaser.transform.localScale = new Vector3(0.8f, 0.8f, m_LaserLength);
         }
         else
         {
@@ -240,7 +225,7 @@ public class FoodCollectorAgent : Agent
 
     public void SetLaserLengths()
     {
-        m_LaserLength = m_ResetParams.GetWithDefault("laser_length", 0.5f);
+        m_LaserLength = m_ResetParams.GetWithDefault("laser_length", 0.4f);
     }
 
     public void SetAgentScale()

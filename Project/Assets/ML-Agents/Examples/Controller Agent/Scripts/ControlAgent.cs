@@ -160,7 +160,7 @@ public class ControlAgent : Agent
         if (m_BlueShoot)
         {
             var myTransform = blueAgent.transform;
-            blueLaser.transform.localScale = new Vector3(1f, 1f, m_LaserLength);
+            blueLaser.transform.localScale = new Vector3(0.8f, 0.8f, m_LaserLength);
             var rayDir = 25.0f * myTransform.forward;
             Debug.DrawRay(myTransform.position, rayDir, Color.red, 0f, true);
             RaycastHit hit;
@@ -302,7 +302,7 @@ public class ControlAgent : Agent
 
     public void SetLaserLengths()
     {
-        m_LaserLength = m_ResetParams.GetWithDefault("laser_length", 0.5f);
+        m_LaserLength = m_ResetParams.GetWithDefault("laser_length", 0.4f);
     }
 
     public void SetAgentScale()

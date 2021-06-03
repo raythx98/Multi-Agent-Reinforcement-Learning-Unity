@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978680367261844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,9 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4360876370799098}
   - component: {fileID: 33025882344299528}
-  - component: {fileID: 65354505920864336}
   - component: {fileID: 23231680800386488}
-  - component: {fileID: 2297454307237680111}
   m_Layer: 2
   m_Name: Cube
   m_TagString: laser
@@ -155,19 +153,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163782207505368}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65354505920864336
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163782207505368}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &23231680800386488
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -209,22 +194,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2297454307237680111
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163782207505368}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1190492283346676
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,9 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4967556344437934}
   - component: {fileID: 33341018729223600}
-  - component: {fileID: 65319547882626302}
   - component: {fileID: 23655279563649666}
-  - component: {fileID: 1811439015319953032}
   m_Layer: 2
   m_Name: Cube
   m_TagString: laser
@@ -394,19 +361,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288627264482826}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65319547882626302
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288627264482826}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &23655279563649666
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -448,22 +402,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &1811439015319953032
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288627264482826}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1289317325350534
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,9 +412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4815655783331066}
   - component: {fileID: 33797642203439586}
-  - component: {fileID: 65825948695401364}
   - component: {fileID: 23804249467165384}
-  - component: {fileID: 1092534617632689861}
   m_Layer: 2
   m_Name: Cube (7)
   m_TagString: laser
@@ -506,19 +442,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289317325350534}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65825948695401364
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289317325350534}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &23804249467165384
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -560,22 +483,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &1092534617632689861
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289317325350534}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1457179540742082
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,10 +751,10 @@ MonoBehaviour:
   - wall
   - red
   - frozenAgent
-  m_RaysPerDirection: 4
-  m_MaxRayDegrees: 180
-  m_SphereCastRadius: 0.6
-  m_RayLength: 20
+  m_RaysPerDirection: 12
+  m_MaxRayDegrees: 90
+  m_SphereCastRadius: 0.5
+  m_RayLength: 40
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
@@ -871,9 +778,9 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor2
   m_DetectableTags:
   - agent
-  m_RaysPerDirection: 1
-  m_MaxRayDegrees: 2
-  m_SphereCastRadius: 0.3
+  m_RaysPerDirection: 0
+  m_MaxRayDegrees: 0
+  m_SphereCastRadius: 0.36
   m_RayLength: 8.6
   m_RayLayerMask:
     serializedVersion: 2
@@ -1041,10 +948,10 @@ MonoBehaviour:
   - wall
   - red
   - frozenAgent
-  m_RaysPerDirection: 4
-  m_MaxRayDegrees: 180
-  m_SphereCastRadius: 0.6
-  m_RayLength: 20
+  m_RaysPerDirection: 12
+  m_MaxRayDegrees: 90
+  m_SphereCastRadius: 0.5
+  m_RayLength: 40
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
@@ -1068,9 +975,9 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor2
   m_DetectableTags:
   - agent
-  m_RaysPerDirection: 1
-  m_MaxRayDegrees: 2
-  m_SphereCastRadius: 0.3
+  m_RaysPerDirection: 0
+  m_MaxRayDegrees: 0
+  m_SphereCastRadius: 0.36
   m_RayLength: 8.6
   m_RayLayerMask:
     serializedVersion: 2
@@ -1171,9 +1078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4909090634432460}
   - component: {fileID: 33711003775834886}
-  - component: {fileID: 65424810526260318}
   - component: {fileID: 23325276038369808}
-  - component: {fileID: 4688491966047700349}
   m_Layer: 2
   m_Name: Cube (7)
   m_TagString: laser
@@ -1203,19 +1108,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643846525668720}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65424810526260318
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1643846525668720}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &23325276038369808
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1257,22 +1149,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &4688491966047700349
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1643846525668720}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1697125512713780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,7 +1460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4955631281465514}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

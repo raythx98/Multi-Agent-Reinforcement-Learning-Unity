@@ -62,7 +62,7 @@ public class FoodCollectorSettings : MonoBehaviour
             highScore = total;
         }
         highscoreText.text = $"Blue score: {blue} \nRed score: {red} \nTotal score: {total} \nHigh score: {highScore}";
-        attemptText.text = $"Attempts: {attempts - 3}";
+        attemptText.text = $"Attempts: {attempts - 7}";
 
         // Send stats via SideChannel so that they'll appear in TensorBoard.
         // These values get averaged every summary_frequency steps, so we don't

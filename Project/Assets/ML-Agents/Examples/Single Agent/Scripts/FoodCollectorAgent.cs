@@ -74,6 +74,7 @@ public class FoodCollectorAgent : Agent
 
     public void MoveAgent(ActionBuffers actionBuffers)
     {
+        myLaser.transform.localScale = new Vector3(0f, 0f, 0f);
         m_Shoot = false;
 
         if (Time.time > m_FrozenTime + 5f && m_Frozen)
@@ -112,6 +113,9 @@ public class FoodCollectorAgent : Agent
 
         if (m_Shoot)
         {
+            myLaser.transform.localScale = new Vector3(1f, 1f, m_LaserLength);
+
+            /*
             var myTransform = transform;
             myLaser.transform.localScale = new Vector3(1f, 1f, m_LaserLength);
             var rayDir = 25.0f * myTransform.forward;
@@ -124,7 +128,7 @@ public class FoodCollectorAgent : Agent
                     AddReward(1f); // Encourage agents to shoot each other
                     hit.collider.gameObject.GetComponent<FoodCollectorAgent>().Freeze();
                 }
-            }
+            } */
         }
         else
         {
@@ -132,7 +136,12 @@ public class FoodCollectorAgent : Agent
         }
     }
 
-    void Freeze()
+    public void HitEnemy()
+    {
+        AddReward(1f);
+    }
+
+    public void Freeze()
     {
         gameObject.tag = "frozenAgent";
         m_Frozen = true;
@@ -197,12 +206,12 @@ public class FoodCollectorAgent : Agent
             if (this.m_isBlue)
             {
                 collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-                AddReward(2f);
+                AddReward(2.5f);
                 this.score += 2;
             } else
             {
                 collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-                AddReward(1f);
+                AddReward(0.5f);
                 this.score++;
             }
 
@@ -211,17 +220,21 @@ public class FoodCollectorAgent : Agent
             if (!this.m_isBlue)
             {
                 collision.gameObject.GetComponent<FoodLogic>().OnEaten(); // Own colour, double the reward
-                AddReward(2f);
+                AddReward(2.5f);
                 this.score += 2;
             } else
             {
                 collision.gameObject.GetComponent<FoodLogic>().OnEaten();
-                AddReward(1f);
+                AddReward(0.5f);
                 this.score++;
             }
 
-        } else
+        }
+
+        if (collision.gameObject.CompareTag("laser"))
         {
+            Freeze();
+            collision.gameObject.transform.parent.parent.GetComponent<FoodCollectorAgent>().HitEnemy();
         }
     }
 

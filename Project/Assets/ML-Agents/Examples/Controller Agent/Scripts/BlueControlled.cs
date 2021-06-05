@@ -11,13 +11,12 @@ public class BlueControlled : MonoBehaviour
         if (collision.gameObject.CompareTag("blue"))
         {
             collision.gameObject.GetComponent<FoodLogicController>().OnEaten();
-            area.GetComponent<ControlAgent>().onEaten(true, true);
+            area.GetComponent<ControlAgent>().OnEaten(true, true);
         }
         else if (collision.gameObject.CompareTag("red"))
         {
             collision.gameObject.GetComponent<FoodLogicController>().OnEaten();
-            area.GetComponent<ControlAgent>().onEaten(true, false);
+            area.GetComponent<ControlAgent>().OnEaten(true, false);
         }
-        else {}
     }
 }

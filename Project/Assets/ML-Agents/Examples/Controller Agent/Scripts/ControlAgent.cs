@@ -90,6 +90,8 @@ public class ControlAgent : Agent
 
     public void MoveAgent(ActionBuffers actionBuffers)
     {
+        blueLaser.transform.localScale = new Vector3(0f, 0f, 0f);
+        redLaser.transform.localScale = new Vector3(0f, 0f, 0f);
         m_BlueShoot = false;
         m_RedShoot = false;
 
@@ -161,10 +163,10 @@ public class ControlAgent : Agent
         {
             var myTransform = blueAgent.transform;
             blueLaser.transform.localScale = new Vector3(0.8f, 0.8f, m_LaserLength);
-            var rayDir = 25.0f * myTransform.forward;
+            var rayDir = 20.0f * myTransform.forward;
             Debug.DrawRay(myTransform.position, rayDir, Color.red, 0f, true);
             RaycastHit hit;
-            if (Physics.SphereCast(blueAgent.transform.position, 2f, rayDir, out hit, 25f))
+            if (Physics.SphereCast(blueAgent.transform.position, 1f, rayDir, out hit, 20f))
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
@@ -180,11 +182,11 @@ public class ControlAgent : Agent
         if (m_RedShoot)
         {
             var myTransform = redAgent.transform;
-            redLaser.transform.localScale = new Vector3(1f, 1f, m_LaserLength);
-            var rayDir = 25.0f * myTransform.forward;
+            redLaser.transform.localScale = new Vector3(0.8f, 0.8f, m_LaserLength);
+            var rayDir = 20.0f * myTransform.forward;
             Debug.DrawRay(myTransform.position, rayDir, Color.red, 0f, true);
             RaycastHit hit;
-            if (Physics.SphereCast(redAgent.transform.position, 2f, rayDir, out hit, 25f))
+            if (Physics.SphereCast(redAgent.transform.position, 1f, rayDir, out hit, 20f))
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
@@ -278,23 +280,23 @@ public class ControlAgent : Agent
         SetResetParameters();
     }
 
-    public void onEaten(bool isBlueAgent, bool isBlueFood)
+    public void OnEaten(bool isBlueAgent, bool isBlueFood)
     {
         if (isBlueAgent && isBlueFood) // Double reward for own colour
         {
-            AddReward(2f);
+            AddReward(2.5f);
             blueScore += 2;
         } else if (!isBlueAgent && !isBlueFood) // Double reward for own colour
         {
-            AddReward(2f);
+            AddReward(2.5f);
             redScore += 2;
         } else if (isBlueAgent)
         {
-            AddReward(1f);
+            AddReward(0.5f);
             blueScore++;
         } else
         {
-            AddReward(1f);
+            AddReward(0.5f);
             redScore++;
         }
         numFoodRemaining--;

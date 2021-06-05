@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978680367261844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 33025882344299528}
   - component: {fileID: 65354505920864336}
   - component: {fileID: 23231680800386488}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 33341018729223600}
   - component: {fileID: 65319547882626302}
   - component: {fileID: 23655279563649666}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 33797642203439586}
   - component: {fileID: 65825948695401364}
   - component: {fileID: 23804249467165384}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +633,8 @@ GameObject:
   - component: {fileID: 65550728419070768}
   - component: {fileID: 54936164982484646}
   - component: {fileID: 8599610283400040772}
-  m_Layer: 0
+  - component: {fileID: 3813675013629808544}
+  m_Layer: 3
   m_Name: Agent Blue
   m_TagString: agent
   m_Icon: {fileID: 0}
@@ -698,6 +699,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: {fileID: 1819751139121548}
+--- !u!114 &3813675013629808544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464820575638702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensorBlue
+  m_DetectableTags:
+  - blue
+  - agent
+  - wall
+  - red
+  - frozenAgent
+  m_RaysPerDirection: 24
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.3
+  m_RayLength: 40
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &1495617568563208
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +742,8 @@ GameObject:
   - component: {fileID: 65905012397919158}
   - component: {fileID: 54504078365531932}
   - component: {fileID: 3797321587977307174}
-  m_Layer: 0
+  - component: {fileID: 297945675576505554}
+  m_Layer: 3
   m_Name: Agent Red
   m_TagString: agent
   m_Icon: {fileID: 0}
@@ -775,6 +808,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: {fileID: 1819751139121548}
+--- !u!114 &297945675576505554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495617568563208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensorRed
+  m_DetectableTags:
+  - blue
+  - agent
+  - wall
+  - red
+  - frozenAgent
+  m_RaysPerDirection: 24
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.3
+  m_RayLength: 40
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &1638806402294040
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,7 +932,7 @@ GameObject:
   - component: {fileID: 33711003775834886}
   - component: {fileID: 65424810526260318}
   - component: {fileID: 23325276038369808}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1127,7 +1191,6 @@ GameObject:
   - component: {fileID: 6928555797270484179}
   - component: {fileID: 2391452138543588375}
   - component: {fileID: 3890742654626698498}
-  - component: {fileID: 3039223432780645445}
   m_Layer: 0
   m_Name: ControllerArea
   m_TagString: Untagged
@@ -1258,44 +1321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
---- !u!114 &3039223432780645445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819751139121548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a501962d056745d1a30e99146ee39fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: GridSensor
-  m_CellScale: {x: 1, y: 0.01, z: 1}
-  m_GridSize: {x: 40, y: 1, z: 40}
-  m_RotateWithAgent: 1
-  m_AgentGameObject: {fileID: 1819751139121548}
-  m_DetectableTags:
-  - blue
-  - agent
-  - wall
-  - red
-  - frozenAgent
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 307
-  m_MaxColliderBufferSize: 500
-  m_InitialColliderBufferSize: 4
-  m_DebugColors:
-  - {r: 0.40392157, g: 0.7372549, b: 0.41960785, a: 0}
-  - {r: 0.12941177, g: 0.5882353, b: 0.9529412, a: 0}
-  - {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0}
-  - {r: 0.74509805, g: 0.22745098, b: 0.15294118, a: 0}
-  - {r: 0, g: 0, b: 0, a: 0}
-  m_GizmoYOffset: 0
-  m_ShowGizmos: 0
-  m_CompressionType: 1
-  m_ObservationStacks: 1
 --- !u!1 &1904006146885458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,7 +1416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4955631281465514}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

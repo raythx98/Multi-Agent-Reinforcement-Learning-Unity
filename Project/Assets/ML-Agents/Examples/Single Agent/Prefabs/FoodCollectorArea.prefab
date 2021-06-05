@@ -595,7 +595,6 @@ GameObject:
   - component: {fileID: 1222199865870203693}
   - component: {fileID: 4974426634315036992}
   - component: {fileID: 8751563457701015629}
-  - component: {fileID: 5788412034585081052}
   m_Layer: 3
   m_Name: Agent Blue
   m_TagString: agent
@@ -751,40 +750,13 @@ MonoBehaviour:
   - wall
   - red
   - frozenAgent
-  m_RaysPerDirection: 12
-  m_MaxRayDegrees: 90
-  m_SphereCastRadius: 0.5
+  m_RaysPerDirection: 24
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.3
   m_RayLength: 40
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
-  m_ObservationStacks: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 0
---- !u!114 &5788412034585081052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1464820575638702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor2
-  m_DetectableTags:
-  - agent
-  m_RaysPerDirection: 0
-  m_MaxRayDegrees: 0
-  m_SphereCastRadius: 0.36
-  m_RayLength: 8.6
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
@@ -805,7 +777,6 @@ GameObject:
   - component: {fileID: 259154752087955944}
   - component: {fileID: 6187077252110425599}
   - component: {fileID: 5421324001840600943}
-  - component: {fileID: 625555677925179522}
   m_Layer: 3
   m_Name: Agent Red
   m_TagString: agent
@@ -948,40 +919,13 @@ MonoBehaviour:
   - wall
   - red
   - frozenAgent
-  m_RaysPerDirection: 12
-  m_MaxRayDegrees: 90
-  m_SphereCastRadius: 0.5
+  m_RaysPerDirection: 24
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.3
   m_RayLength: 40
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
-  m_ObservationStacks: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 0
---- !u!114 &625555677925179522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495617568563208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor2
-  m_DetectableTags:
-  - agent
-  m_RaysPerDirection: 0
-  m_MaxRayDegrees: 0
-  m_SphereCastRadius: 0.36
-  m_RayLength: 8.6
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}

@@ -118,7 +118,7 @@ public class FoodCollectorAgent : Agent
             var rayDir = 20.0f * myTransform.forward;
             Debug.DrawRay(myTransform.position, rayDir, Color.red, 0f, true);
             RaycastHit hit;
-            if (Physics.SphereCast(transform.position, 2f, rayDir, out hit, 20f))
+            if (Physics.SphereCast(transform.position, 1f, rayDir, out hit, 20f))
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {

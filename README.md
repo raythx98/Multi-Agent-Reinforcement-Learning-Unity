@@ -1,190 +1,430 @@
 <img src="docs/images/image-banner.png" align="middle" width="3000"/>
 
-# Unity ML-Agents Toolkit
+# Installation
 
-[![docs badge](https://img.shields.io/badge/docs-reference-blue.svg)](https://github.com/Unity-Technologies/ml-agents/tree/release_17_docs/docs/)
+If you have completed the installation process, look at the [getting started guide](#getting-started-guide)
 
-[![license badge](https://img.shields.io/badge/license-Apache--2.0-green.svg)](LICENSE)
+To install and use the ML-Agents Toolkit you will need to:
 
-([latest release](https://github.com/Unity-Technologies/ml-agents/releases/tag/latest_release))
-([all releases](https://github.com/Unity-Technologies/ml-agents/releases))
+- Install Unity (2019.4 or later)
+- Install Python (3.6.1 or higher)
+- Clone this repository
+  - __Note:__ If you do not clone the repository, then you will not be
+  able to access the example environments and training configurations or the
+  `com.unity.ml-agents.extensions` package. 
+- Install the `com.unity.ml-agents` Unity package
+- Install the `mlagents` Python package
 
-**The Unity Machine Learning Agents Toolkit** (ML-Agents) is an open-source
-project that enables games and simulations to serve as environments for
-training intelligent agents. We provide implementations (based on PyTorch)
-of state-of-the-art algorithms to enable game developers and hobbyists to easily
-train intelligent agents for 2D, 3D and VR/AR games. Researchers can also use the
-provided simple-to-use Python API to train Agents using reinforcement learning,
-imitation learning, neuroevolution, or any other methods. These trained agents can be
-used for multiple purposes, including controlling NPC behavior (in a variety of
-settings such as multi-agent and adversarial), automated testing of game builds
-and evaluating different game design decisions pre-release. The ML-Agents
-Toolkit is mutually beneficial for both game developers and AI researchers as it
-provides a central platform where advances in AI can be evaluated on Unity’s
-rich environments and then made accessible to the wider research and game
-developer communities.
+### Install **Unity 2019.4** or Later
 
-## Features
+[Download](https://unity3d.com/get-unity/download) and install Unity. We
+strongly recommend that you install Unity through the Unity Hub as it will
+enable you to manage multiple Unity versions.
 
-- 18+ [example Unity environments](docs/Learning-Environment-Examples.md)
-- Support for multiple environment configurations and training scenarios
-- Flexible Unity SDK that can be integrated into your game or custom Unity scene
-- Support for training single-agent, multi-agent cooperative, and multi-agent
-  competitive scenarios via several Deep Reinforcement Learning algorithms (PPO, SAC, MA-POCA, self-play).
-- Support for learning from demonstrations through two Imitation Learning algorithms (BC and GAIL).
-- Easily definable Curriculum Learning scenarios for complex tasks
-- Train robust agents using environment randomization
-- Flexible agent control with On Demand Decision Making
-- Train using multiple concurrent Unity environment instances
-- Utilizes the [Unity Inference Engine](docs/Unity-Inference-Engine.md) to
-  provide native cross-platform support
-- Unity environment [control from Python](docs/Python-API.md)
-- Wrap Unity learning environments as a [gym](gym-unity/README.md)
+### Install **Python 3.6.1** or Higher
 
-See our [ML-Agents Overview](docs/ML-Agents-Overview.md) page for detailed
-descriptions of all these features.
+We recommend [installing](https://www.python.org/downloads/) Python 3.6 or 3.7.
+If you are using Windows, please install the x86-64 version and not x86.
+If your Python environment doesn't include `pip3`, see these
+[instructions](https://packaging.python.org/guides/installing-using-linux-tools/#installing-pip-setuptools-wheel-with-linux-package-managers)
+on installing it.
 
-## Releases & Documentation
+### Clone the ML-Agents Toolkit Repository (Optional)
 
-**Our latest, stable release is `Release 17`. Click
-[here](https://github.com/Unity-Technologies/ml-agents/tree/release_17_docs/docs/Readme.md)
-to get started with the latest release of ML-Agents.**
+Now that you have installed Unity and Python, you can now install the Unity and
+Python packages. You do not need to clone the repository to install those
+packages, but you may choose to clone the repository if you'd like download our
+example environments and training configurations to experiment with them (some
+of our tutorials / guides assume you have access to our example environments).
 
-The table below lists all our releases, including our `main` branch which is
-under active development and may be unstable. A few helpful guidelines:
-- The [Versioning page](docs/Versioning.md) overviews how we manage our GitHub
-  releases and the versioning process for each of the ML-Agents components.
-- The [Releases page](https://github.com/Unity-Technologies/ml-agents/releases)
-  contains details of the changes between releases.
-- The [Migration page](docs/Migrating.md) contains details on how to upgrade
-  from earlier releases of the ML-Agents Toolkit.
-- The **Documentation** links in the table below include installation and usage
-  instructions specific to each release. Remember to always use the
-  documentation that corresponds to the release version you're using.
-- The `com.unity.ml-agents` package is [verified](https://docs.unity3d.com/2020.1/Documentation/Manual/pack-safe.html)
-  for Unity 2020.1 and later. Verified packages releases are numbered 1.0.x.
+**NOTE:** There are samples shipped with the Unity Package.  You only need to clone
+the repository if you would like to explore more examples.
 
-| **Version** | **Release Date** | **Source** | **Documentation** | **Download** | **Python Package** | **Unity Package** |
-|:-------:|:------:|:-------------:|:-------:|:------------:|:------------:|:------------:|
-| **main (unstable)** | -- | [source](https://github.com/Unity-Technologies/ml-agents/tree/main) | [docs](https://github.com/Unity-Technologies/ml-agents/tree/main/docs/Readme.md) | [download](https://github.com/Unity-Technologies/ml-agents/archive/main.zip) | -- | -- |
-| **Release 17** | **April 22, 2021** | **[source](https://github.com/Unity-Technologies/ml-agents/tree/release_17)** | **[docs](https://github.com/Unity-Technologies/ml-agents/tree/release_17_docs/docs/Readme.md)** | **[download](https://github.com/Unity-Technologies/ml-agents/archive/release_17.zip)** | **[0.26.0](https://pypi.org/project/mlagents/0.26.0/)** | **[2.0.0](https://docs.unity3d.com/Packages/com.unity.ml-agents@2.0/manual/index.html)** |
-| **Release 16** | April 13, 2021 | [source](https://github.com/Unity-Technologies/ml-agents/tree/release_16) | [docs](https://github.com/Unity-Technologies/ml-agents/tree/release_16_docs/docs/Readme.md) | [download](https://github.com/Unity-Technologies/ml-agents/archive/release_16.zip) | [0.25.1](https://pypi.org/project/mlagents/0.25.1/) | [1.9.1](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.9/manual/index.html) |
-| **Release 15** | March 17, 2021 | [source](https://github.com/Unity-Technologies/ml-agents/tree/release_15) | [docs](https://github.com/Unity-Technologies/ml-agents/tree/release_15_docs/docs/Readme.md) | [download](https://github.com/Unity-Technologies/ml-agents/archive/release_15.zip) | [0.25.0](https://pypi.org/project/mlagents/0.25.0/) | [1.9.0](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.9/manual/index.html) |
-| **Verified Package 1.0.7** | **March 8, 2021** | **[source](https://github.com/Unity-Technologies/ml-agents/tree/com.unity.ml-agents_1.0.7)** | **[docs](https://github.com/Unity-Technologies/ml-agents/blob/release_2_verified_docs/docs/Readme.md)** | **[download](https://github.com/Unity-Technologies/ml-agents/archive/com.unity.ml-agents_1.0.7.zip)** | **[0.16.1](https://pypi.org/project/mlagents/0.16.1/)** | **[1.0.7](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.0/manual/index.html)** |
-| **Release 14** | March 5, 2021 | [source](https://github.com/Unity-Technologies/ml-agents/tree/release_14) | [docs](https://github.com/Unity-Technologies/ml-agents/tree/release_14_docs/docs/Readme.md) | [download](https://github.com/Unity-Technologies/ml-agents/archive/release_14.zip) | [0.24.1](https://pypi.org/project/mlagents/0.24.1/) | [1.8.1](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.8/manual/index.html) |
-| **Release 13** | February 17, 2021 | [source](https://github.com/Unity-Technologies/ml-agents/tree/release_13) | [docs](https://github.com/Unity-Technologies/ml-agents/tree/release_13_docs/docs/Readme.md) | [download](https://github.com/Unity-Technologies/ml-agents/archive/release_13.zip) | [0.24.0](https://pypi.org/project/mlagents/0.24.0/) | [1.8.0](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.8/manual/index.html) |
-| **Release 12** | December 22, 2020 | [source](https://github.com/Unity-Technologies/ml-agents/tree/release_12) | [docs](https://github.com/Unity-Technologies/ml-agents/tree/release_12_docs/docs/Readme.md) | [download](https://github.com/Unity-Technologies/ml-agents/archive/release_12.zip) | [0.23.0](https://pypi.org/project/mlagents/0.23.0/) | [1.7.2](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.7/manual/index.html) |
-| **Release 11** | December 21, 2020 | [source](https://github.com/Unity-Technologies/ml-agents/tree/release_11) | [docs](https://github.com/Unity-Technologies/ml-agents/tree/release_11_docs/docs/Readme.md) | [download](https://github.com/Unity-Technologies/ml-agents/archive/release_11.zip) | [0.23.0](https://pypi.org/project/mlagents/0.23.0/) | [1.7.0](https://docs.unity3d.com/Packages/com.unity.ml-agents@1.7/manual/index.html) |
+```sh
+git clone --branch release_17 https://github.com/Unity-Technologies/ml-agents.git
+```
 
-If you are a researcher interested in a discussion of Unity as an AI platform,
-see a pre-print of our
-[reference paper on Unity and the ML-Agents Toolkit](https://arxiv.org/abs/1809.02627).
+The `--branch release_17` option will switch to the tag of the latest stable
+release. Omitting that will get the `main` branch which is potentially unstable.
 
-If you use Unity or the ML-Agents Toolkit to conduct research, we ask that you
-cite the following paper as a reference:
+#### Advanced: Local Installation for Development
 
-Juliani, A., Berges, V., Teng, E., Cohen, A., Harper, J., Elion, C., Goy, C.,
-Gao, Y., Henry, H., Mattar, M., Lange, D. (2020). Unity: A General Platform for
-Intelligent Agents. _arXiv preprint
-[arXiv:1809.02627](https://arxiv.org/abs/1809.02627)._
-https://github.com/Unity-Technologies/ml-agents.
+You will need to clone the repository if you plan to modify or extend the
+ML-Agents Toolkit for your purposes. If you plan to contribute those changes
+back, make sure to clone the `main` branch (by omitting `--branch release_17`
+from the command above). See our
+[Contributions Guidelines](../com.unity.ml-agents/CONTRIBUTING.md) for more
+information on contributing to the ML-Agents Toolkit.
 
-## Additional Resources
+### Install the `com.unity.ml-agents` Unity package
 
-We have a Unity Learn course,
-[ML-Agents: Hummingsbird](https://learn.unity.com/course/ml-agents-hummingbirds),
-that provides a gentle introduction to Unity and the ML-Agents Toolkit.
+The Unity ML-Agents C# SDK is a Unity Package. You can install the
+`com.unity.ml-agents` package
+[directly from the Package Manager registry](https://docs.unity3d.com/Manual/upm-ui-install.html).
+Please make sure you enable 'Preview Packages' in the 'Advanced' dropdown in
+order to find the latest Preview release of the package.
 
-We've also partnered with
-[CodeMonkeyUnity](https://www.youtube.com/c/CodeMonkeyUnity) to create a
-[series of tutorial videos](https://www.youtube.com/playlist?list=PLzDRvYVwl53vehwiN_odYJkPBzcqFw110)
-on how to implement and use the ML-Agents Toolkit.
+**NOTE:** If you do not see the ML-Agents package listed in the Package Manager
+please follow the [advanced installation instructions](#advanced-local-installation-for-development) below.
 
-We have also published a series of blog posts that are relevant for ML-Agents:
+#### Advanced: Local Installation for Development
 
-- (December 28, 2020)
-  [Happy holidays from the Unity ML-Agents team!](https://blogs.unity3d.com/2020/12/28/happy-holidays-from-the-unity-ml-agents-team/)
-- (November 20, 2020)
-  [How Eidos-Montréal created Grid Sensors to improve observations for training agents](https://blogs.unity3d.com/2020/11/20/how-eidos-montreal-created-grid-sensors-to-improve-observations-for-training-agents/)
-- (November 11, 2020)
-  [2020 AI@Unity interns shoutout](https://blogs.unity3d.com/2020/11/11/2020-aiunity-interns-shoutout/)
-- (May 12, 2020)
-  [Announcing ML-Agents Unity Package v1.0!](https://blogs.unity3d.com/2020/05/12/announcing-ml-agents-unity-package-v1-0/)
-- (February 28, 2020)
-  [Training intelligent adversaries using self-play with ML-Agents](https://blogs.unity3d.com/2020/02/28/training-intelligent-adversaries-using-self-play-with-ml-agents/)
-- (November 11, 2019)
-  [Training your agents 7 times faster with ML-Agents](https://blogs.unity3d.com/2019/11/11/training-your-agents-7-times-faster-with-ml-agents/)
-- (October 21, 2019)
-  [The AI@Unity interns help shape the world](https://blogs.unity3d.com/2019/10/21/the-aiunity-interns-help-shape-the-world/)
-- (April 15, 2019)
-  [Unity ML-Agents Toolkit v0.8: Faster training on real games](https://blogs.unity3d.com/2019/04/15/unity-ml-agents-toolkit-v0-8-faster-training-on-real-games/)
-- (March 1, 2019)
-  [Unity ML-Agents Toolkit v0.7: A leap towards cross-platform inference](https://blogs.unity3d.com/2019/03/01/unity-ml-agents-toolkit-v0-7-a-leap-towards-cross-platform-inference/)
-- (December 17, 2018)
-  [ML-Agents Toolkit v0.6: Improved usability of Brains and Imitation Learning](https://blogs.unity3d.com/2018/12/17/ml-agents-toolkit-v0-6-improved-usability-of-brains-and-imitation-learning/)
-- (October 2, 2018)
-  [Puppo, The Corgi: Cuteness Overload with the Unity ML-Agents Toolkit](https://blogs.unity3d.com/2018/10/02/puppo-the-corgi-cuteness-overload-with-the-unity-ml-agents-toolkit/)
-- (September 11, 2018)
-  [ML-Agents Toolkit v0.5, new resources for AI researchers available now](https://blogs.unity3d.com/2018/09/11/ml-agents-toolkit-v0-5-new-resources-for-ai-researchers-available-now/)
-- (June 26, 2018)
-  [Solving sparse-reward tasks with Curiosity](https://blogs.unity3d.com/2018/06/26/solving-sparse-reward-tasks-with-curiosity/)
-- (June 19, 2018)
-  [Unity ML-Agents Toolkit v0.4 and Udacity Deep Reinforcement Learning Nanodegree](https://blogs.unity3d.com/2018/06/19/unity-ml-agents-toolkit-v0-4-and-udacity-deep-reinforcement-learning-nanodegree/)
-- (May 24, 2018)
-  [Imitation Learning in Unity: The Workflow](https://blogs.unity3d.com/2018/05/24/imitation-learning-in-unity-the-workflow/)
-- (March 15, 2018)
-  [ML-Agents Toolkit v0.3 Beta released: Imitation Learning, feedback-driven features, and more](https://blogs.unity3d.com/2018/03/15/ml-agents-v0-3-beta-released-imitation-learning-feedback-driven-features-and-more/)
-- (December 11, 2017)
-  [Using Machine Learning Agents in a real game: a beginner’s guide](https://blogs.unity3d.com/2017/12/11/using-machine-learning-agents-in-a-real-game-a-beginners-guide/)
-- (December 8, 2017)
-  [Introducing ML-Agents Toolkit v0.2: Curriculum Learning, new environments, and more](https://blogs.unity3d.com/2017/12/08/introducing-ml-agents-v0-2-curriculum-learning-new-environments-and-more/)
-- (September 19, 2017)
-  [Introducing: Unity Machine Learning Agents Toolkit](https://blogs.unity3d.com/2017/09/19/introducing-unity-machine-learning-agents/)
-- Overviewing reinforcement learning concepts
-  ([multi-armed bandit](https://blogs.unity3d.com/2017/06/26/unity-ai-themed-blog-entries/)
-  and
-  [Q-learning](https://blogs.unity3d.com/2017/08/22/unity-ai-reinforcement-learning-with-q-learning/))
+You can [add the local](https://docs.unity3d.com/Manual/upm-ui-local.html)
+`com.unity.ml-agents` package (from the repository that you just cloned) to your
+project by:
 
-### More from Unity
+1. navigating to the menu `Window` -> `Package Manager`.
+1. In the package manager window click on the `+` button on the top left of the packages list).
+1. Select `Add package from disk...`
+1. Navigate into the `com.unity.ml-agents` folder.
+1. Select the `package.json` file.
 
-- [Unity Robotics](https://github.com/Unity-Technologies/Unity-Robotics-Hub)
-- [Unity Computer Vision](https://unity.com/computer-vision)
-- [Unity Game Simulation](https://unity.com/products/game-simulation)
+<p align="center">
+  <img src="images/unity_package_manager_window.png"
+       alt="Unity Package Manager Window"
+       height="300"
+       border="10" />
+  <img src="images/unity_package_json.png"
+     alt="package.json"
+     height="300"
+     border="10" />
+</p>
 
-## Community and Feedback
+If you are going to follow the examples from our documentation, you can open the
+`Project` folder in Unity and start tinkering immediately.
 
-The ML-Agents Toolkit is an open-source project and we encourage and welcome
-contributions. If you wish to contribute, be sure to review our
-[contribution guidelines](com.unity.ml-agents/CONTRIBUTING.md) and
-[code of conduct](CODE_OF_CONDUCT.md).
+### Install the `com.unity.ml-agents.extensions` Unity package (Optional)
 
-For problems with the installation and setup of the ML-Agents Toolkit, or
-discussions about how to best setup or train your agents, please create a new
-thread on the
-[Unity ML-Agents forum](https://forum.unity.com/forums/ml-agents.453/) and make
-sure to include as much detail as possible. If you run into any other problems
-using the ML-Agents Toolkit or have a specific feature request, please
-[submit a GitHub issue](https://github.com/Unity-Technologies/ml-agents/issues).
+To install the `com.unity.ml-agents.extensions` package, you need to first
+clone the repo and then complete a local installation similar to what was
+outlined in the previous
+[Advanced: Local Installation for Development](#advanced-local-installation-for-development-1)
+section. Complete installation steps can be found in the
+[package documentation](../com.unity.ml-agents.extensions/Documentation~/com.unity.ml-agents.extensions.md#installation).
 
-Please tell us which samples you would like to see shipped with the ML-Agents Unity
-package by replying to
-[this forum thread](https://forum.unity.com/threads/feedback-wanted-shipping-sample-s-with-the-ml-agents-package.1073468/).
+### Install the `mlagents` Python package
 
+Installing the `mlagents` Python package involves installing other Python
+packages that `mlagents` depends on. So you may run into installation issues if
+your machine has older versions of any of those dependencies already installed.
+Consequently, our supported path for installing `mlagents` is to leverage Python
+Virtual Environments. Virtual Environments provide a mechanism for isolating the
+dependencies for each project and are supported on Mac / Windows / Linux. We
+offer a dedicated [guide on Virtual Environments](Using-Virtual-Environment.md).
 
-Your opinion matters a great deal to us. Only by hearing your thoughts on the
-Unity ML-Agents Toolkit can we continue to improve and grow. Please take a few
-minutes to
-[let us know about it](https://github.com/Unity-Technologies/ml-agents/issues/1454).
+#### (Windows) Installing PyTorch
 
-For any other questions or feedback, connect directly with the ML-Agents team at
-ml-agents@unity3d.com.
+On Windows, you'll have to install the PyTorch package separately prior to
+installing ML-Agents. Activate your virtual environment and run from the command line:
 
-## Privacy
+```sh
+pip3 install torch~=1.7.1 -f https://download.pytorch.org/whl/torch_stable.html
+```
 
-In order to improve the developer experience for Unity ML-Agents Toolkit, we have added in-editor analytics.
-Please refer to "Information that is passively collected by Unity" in the
-[Unity Privacy Policy](https://unity3d.com/legal/privacy-policy).
+Note that on Windows, you may also need Microsoft's
+[Visual C++ Redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads)
+if you don't have it already. See the [PyTorch installation guide](https://pytorch.org/get-started/locally/)
+for more installation options and versions.
 
-## License
+#### Installing `mlagents`
 
-[Apache License 2.0](LICENSE)
+To install the `mlagents` Python package, activate your virtual environment and
+run from the command line:
+
+```sh
+python -m pip install mlagents==0.26.0
+```
+
+Note that this will install `mlagents` from PyPi, _not_ from the cloned
+repository. If you installed this correctly, you should be able to run
+`mlagents-learn --help`, after which you will see the command
+line parameters you can use with `mlagents-learn`.
+
+By installing the `mlagents` package, the dependencies listed in the
+[setup.py file](../ml-agents/setup.py) are also installed. These include
+[PyTorch](Background-PyTorch.md) (Requires a CPU w/ AVX support).
+
+#### Advanced: Local Installation for Development
+
+If you intend to make modifications to `mlagents` or `mlagents_envs`, you should
+install the packages from the cloned repository rather than from PyPi. To do
+this, you will need to install `mlagents` and `mlagents_envs` separately. From
+the repository's root directory, run:
+
+```sh
+pip3 install torch -f https://download.pytorch.org/whl/torch_stable.html
+pip3 install -e ./ml-agents-envs
+pip3 install -e ./ml-agents
+```
+
+Running pip with the `-e` flag will let you make changes to the Python files
+directly and have those reflected when you run `mlagents-learn`. It is important
+to install these packages in this order as the `mlagents` package depends on
+`mlagents_envs`, and installing it in the other order will download
+`mlagents_envs` from PyPi.
+
+# Getting Started Guide
+
+This guide walks through the end-to-end process of opening one of our
+[example environments](Learning-Environment-Examples.md) in Unity, training an
+Agent in it, and embedding the trained model into the Unity environment. After
+reading this tutorial, you should be able to train any of the example
+environments. If you are not familiar with the
+[Unity Engine](https://unity3d.com/unity), view our
+[Background: Unity](Background-Unity.md) page for helpful pointers.
+Additionally, if you're not familiar with machine learning, view our
+[Background: Machine Learning](Background-Machine-Learning.md) page for a brief
+overview and helpful pointers.
+
+![3D Balance Ball](images/balance.png)
+
+For this guide, we'll use the **3D Balance Ball** environment which contains a
+number of agent cubes and balls (which are all copies of each other). Each agent
+cube tries to keep its ball from falling by rotating either horizontally or
+vertically. In this environment, an agent cube is an **Agent** that receives a
+reward for every step that it balances the ball. An agent is also penalized with
+a negative reward for dropping the ball. The goal of the training process is to
+have the agents learn to balance the ball on their head.
+
+Let's get started!
+
+## Installation
+
+If you haven't already, follow the [installation instructions](Installation.md).
+Afterwards, open the Unity Project that contains all the example environments:
+
+1. Open the Package Manager Window by navigating to `Window -> Package Manager`
+   in the menu.
+1. Navigate to the ML-Agents Package and click on it.
+1. Find the `3D Ball` sample and click `Import`.
+1. In the **Project** window, go to the
+   `Assets/ML-Agents/Examples/3DBall/Scenes` folder and open the `3DBall` scene
+   file.
+
+## Understanding a Unity Environment
+
+An agent is an autonomous actor that observes and interacts with an
+_environment_. In the context of Unity, an environment is a scene containing one
+or more Agent objects, and, of course, the other entities that an agent
+interacts with.
+
+![Unity Editor](images/mlagents-3DBallHierarchy.png)
+
+**Note:** In Unity, the base object of everything in a scene is the
+_GameObject_. The GameObject is essentially a container for everything else,
+including behaviors, graphics, physics, etc. To see the components that make up
+a GameObject, select the GameObject in the Scene window, and open the Inspector
+window. The Inspector shows every component on a GameObject.
+
+The first thing you may notice after opening the 3D Balance Ball scene is that
+it contains not one, but several agent cubes. Each agent cube in the scene is an
+independent agent, but they all share the same Behavior. 3D Balance Ball does
+this to speed up training since all twelve agents contribute to training in
+parallel.
+
+### Agent
+
+The Agent is the actor that observes and takes actions in the environment. In
+the 3D Balance Ball environment, the Agent components are placed on the twelve
+"Agent" GameObjects. The base Agent object has a few properties that affect its
+behavior:
+
+- **Behavior Parameters** — Every Agent must have a Behavior. The Behavior
+  determines how an Agent makes decisions.
+- **Max Step** — Defines how many simulation steps can occur before the Agent's
+  episode ends. In 3D Balance Ball, an Agent restarts after 5000 steps.
+
+#### Behavior Parameters : Vector Observation Space
+
+Before making a decision, an agent collects its observation about its state in
+the world. The vector observation is a vector of floating point numbers which
+contain relevant information for the agent to make decisions.
+
+The Behavior Parameters of the 3D Balance Ball example uses a `Space Size` of 8.
+This means that the feature vector containing the Agent's observations contains
+eight elements: the `x` and `z` components of the agent cube's rotation and the
+`x`, `y`, and `z` components of the ball's relative position and velocity.
+
+#### Behavior Parameters : Actions
+
+An Agent is given instructions in the form of actions.
+ML-Agents Toolkit classifies actions into two types: continuous and discrete.
+The 3D Balance Ball example is programmed to use continuous actions, which
+are a vector of floating-point numbers that can vary continuously. More specifically,
+it uses a `Space Size` of 2 to control the amount of `x` and `z` rotations to apply to
+itself to keep the ball balanced on its head.
+
+## Running a pre-trained model
+
+We include pre-trained models for our agents (`.onnx` files) and we use the
+[Unity Inference Engine](Unity-Inference-Engine.md) to run these models inside
+Unity. In this section, we will use the pre-trained model for the 3D Ball
+example.
+
+1. In the **Project** window, go to the
+   `Assets/ML-Agents/Examples/3DBall/Prefabs` folder. Expand `3DBall` and click
+   on the `Agent` prefab. You should see the `Agent` prefab in the **Inspector**
+   window.
+
+   **Note**: The platforms in the `3DBall` scene were created using the `3DBall`
+   prefab. Instead of updating all 12 platforms individually, you can update the
+   `3DBall` prefab instead.
+
+   ![Platform Prefab](images/platform_prefab.png)
+
+1. In the **Project** window, drag the **3DBall** Model located in
+   `Assets/ML-Agents/Examples/3DBall/TFModels` into the `Model` property under
+   `Behavior Parameters (Script)` component in the Agent GameObject
+   **Inspector** window.
+
+   ![3dball learning brain](images/3dball_learning_brain.png)
+
+1. You should notice that each `Agent` under each `3DBall` in the **Hierarchy**
+   windows now contains **3DBall** as `Model` on the `Behavior Parameters`.
+   **Note** : You can modify multiple game objects in a scene by selecting them
+   all at once using the search bar in the Scene Hierarchy.
+1. Set the **Inference Device** to use for this model as `CPU`.
+1. Click the **Play** button in the Unity Editor and you will see the platforms
+   balance the balls using the pre-trained model.
+
+## Training a new model with Reinforcement Learning
+
+While we provide pre-trained models for the agents in this environment, any
+environment you make yourself will require training agents from scratch to
+generate a new model file. In this section we will demonstrate how to use the
+reinforcement learning algorithms that are part of the ML-Agents Python package
+to accomplish this. We have provided a convenient command `mlagents-learn` which
+accepts arguments used to configure both training and inference phases.
+
+### Training the environment
+
+1. Open a command or terminal window.
+1. Navigate to the folder where you cloned the `ml-agents` repository. **Note**:
+   If you followed the default [installation](Installation.md), then you should
+   be able to run `mlagents-learn` from any directory.
+1. Run `mlagents-learn config/ppo/3DBall.yaml --run-id=first3DBallRun`.
+   - `config/ppo/3DBall.yaml` is the path to a default training
+     configuration file that we provide. The `config/ppo` folder includes training configuration
+     files for all our example environments, including 3DBall.
+   - `run-id` is a unique name for this training session.
+1. When the message _"Start training by pressing the Play button in the Unity
+   Editor"_ is displayed on the screen, you can press the **Play** button in
+   Unity to start training in the Editor.
+
+If `mlagents-learn` runs correctly and starts training, you should see something
+like this:
+
+```console
+INFO:mlagents_envs:
+'Ball3DAcademy' started successfully!
+Unity Academy name: Ball3DAcademy
+
+INFO:mlagents_envs:Connected new brain:
+Unity brain name: 3DBallLearning
+        Number of Visual Observations (per agent): 0
+        Vector Observation space size (per agent): 8
+        Number of stacked Vector Observation: 1
+INFO:mlagents_envs:Hyperparameters for the PPO Trainer of brain 3DBallLearning:
+        batch_size:          64
+        beta:                0.001
+        buffer_size:         12000
+        epsilon:             0.2
+        gamma:               0.995
+        hidden_units:        128
+        lambd:               0.99
+        learning_rate:       0.0003
+        max_steps:           5.0e4
+        normalize:           True
+        num_epoch:           3
+        num_layers:          2
+        time_horizon:        1000
+        sequence_length:     64
+        summary_freq:        1000
+        use_recurrent:       False
+        memory_size:         256
+        use_curiosity:       False
+        curiosity_strength:  0.01
+        curiosity_enc_size:  128
+        output_path: ./results/first3DBallRun/3DBallLearning
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 1000. Mean Reward: 1.242. Std of Reward: 0.746. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 2000. Mean Reward: 1.319. Std of Reward: 0.693. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 3000. Mean Reward: 1.804. Std of Reward: 1.056. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 4000. Mean Reward: 2.151. Std of Reward: 1.432. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 5000. Mean Reward: 3.175. Std of Reward: 2.250. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 6000. Mean Reward: 4.898. Std of Reward: 4.019. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 7000. Mean Reward: 6.716. Std of Reward: 5.125. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 8000. Mean Reward: 12.124. Std of Reward: 11.929. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 9000. Mean Reward: 18.151. Std of Reward: 16.871. Training.
+INFO:mlagents.trainers: first3DBallRun: 3DBallLearning: Step: 10000. Mean Reward: 27.284. Std of Reward: 28.667. Training.
+```
+
+Note how the `Mean Reward` value printed to the screen increases as training
+progresses. This is a positive sign that training is succeeding.
+
+**Note**: You can train using an executable rather than the Editor. To do so,
+follow the instructions in
+[Using an Executable](Learning-Environment-Executable.md).
+
+### Observing Training Progress
+
+Once you start training using `mlagents-learn` in the way described in the
+previous section, the `ml-agents` directory will contain a `results`
+directory. In order to observe the training process in more detail, you can use
+TensorBoard. From the command line run:
+
+```sh
+tensorboard --logdir results
+```
+
+Then navigate to `localhost:6006` in your browser to view the TensorBoard
+summary statistics as shown below. For the purposes of this section, the most
+important statistic is `Environment/Cumulative Reward` which should increase
+throughout training, eventually converging close to `100` which is the maximum
+reward the agent can accumulate.
+
+![Example TensorBoard Run](images/mlagents-TensorBoard.png)
+
+## Embedding the model into the Unity Environment
+
+Once the training process completes, and the training process saves the model
+(denoted by the `Saved Model` message) you can add it to the Unity project and
+use it with compatible Agents (the Agents that generated the model). **Note:**
+Do not just close the Unity Window once the `Saved Model` message appears.
+Either wait for the training process to close the window or press `Ctrl+C` at
+the command-line prompt. If you close the window manually, the `.onnx` file
+containing the trained model is not exported into the ml-agents folder.
+
+If you've quit the training early using `Ctrl+C` and want to resume training,
+run the same command again, appending the `--resume` flag:
+
+```sh
+mlagents-learn config/ppo/3DBall.yaml --run-id=first3DBallRun --resume
+```
+
+Your trained model will be at `results/<run-identifier>/<behavior_name>.onnx` where
+`<behavior_name>` is the name of the `Behavior Name` of the agents corresponding
+to the model. This file corresponds to your model's latest checkpoint. You can
+now embed this trained model into your Agents by following the steps below,
+which is similar to the steps described [above](#running-a-pre-trained-model).
+
+1. Move your model file into
+   `Project/Assets/ML-Agents/Examples/3DBall/TFModels/`.
+1. Open the Unity Editor, and select the **3DBall** scene as described above.
+1. Select the **3DBall** prefab Agent object.
+1. Drag the `<behavior_name>.onnx` file from the Project window of the Editor to
+   the **Model** placeholder in the **Ball3DAgent** inspector window.
+1. Press the **Play** button at the top of the Editor.
+
+## Next Steps
+
+- For more information on the ML-Agents Toolkit, in addition to helpful
+  background, check out the [ML-Agents Toolkit Overview](ML-Agents-Overview.md)
+  page.
+- For a "Hello World" introduction to creating your own Learning Environment,
+  check out the
+  [Making a New Learning Environment](Learning-Environment-Create-New.md) page.
+- For an overview on the more complex example environments that are provided in
+  this toolkit, check out the
+  [Example Environments](Learning-Environment-Examples.md) page.
+- For more information on the various training options available, check out the
+  [Training ML-Agents](Training-ML-Agents.md) page.

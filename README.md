@@ -294,6 +294,12 @@ like this:
         behavioral_cloning:     None
 
 [INFO] PocaCollector. Step: 50000. Time Elapsed: 171.361 s. Mean Reward: 0.000. Mean Group Reward: 0.875. Training.
+[INFO] PocaCollector. Step: 100000. Time Elapsed: 337.445 s. Mean Reward: 0.000. Mean Group Reward: 2.938. Training.
+[INFO] PocaCollector. Step: 150000. Time Elapsed: 551.020 s. Mean Reward: 0.000. Mean Group Reward: 0.625. Training.
+[INFO] PocaCollector. Step: 200000. Time Elapsed: 733.952 s. Mean Reward: 0.000. Mean Group Reward: 4.688. Training.
+[INFO] PocaCollector. Step: 250000. Time Elapsed: 897.273 s. Mean Reward: 0.000. Mean Group Reward: 4.750. Training.
+[INFO] PocaCollector. Step: 300000. Time Elapsed: 1124.174 s. Mean Reward: 0.000. Mean Group Reward: 6.875. Training.
+[INFO] PocaCollector. Step: 350000. Time Elapsed: 1296.552 s. Mean Reward: 0.000. Mean Group Reward: 8.750. Training.
 ```
 
 Note how the `Mean Reward` value printed to the screen increases as training

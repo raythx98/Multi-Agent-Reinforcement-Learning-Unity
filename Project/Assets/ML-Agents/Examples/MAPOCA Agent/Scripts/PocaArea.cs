@@ -1,42 +1,83 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Unity.MLAgents;
 using Unity.MLAgentsExamples;
 
 public class PocaArea : Area
 {
     public GameObject blueFood;
     public GameObject redFood;
-    public GameObject blueAgent;
-    public GameObject redAgent;
+    public int MaxEnvironmentSteps = 10000;
+    public List<PocaAgent> AgentsList = new List<PocaAgent>();
+    private int m_ResetTimer;
+    private SimpleMultiAgentGroup m_AgentGroup;
+    private int blueScore;
+    private int redScore;
     public int numBlueFood;
     public int numRedFood;
     public bool respawnFood;
     public float range;
     int remainingFood = 0;
 
-    public void Update()
+    // Update is called once per frame
+    void FixedUpdate()
     {
-        if (remainingFood <= 0)
+        m_ResetTimer += 1;
+        if (m_ResetTimer >= MaxEnvironmentSteps )
         {
-            if (blueAgent.GetComponent<PocaAgent>().GetScore() > redAgent.GetComponent<FoodCollectorAgent>().GetScore())
+            foreach (var item in AgentsList)
             {
-                blueAgent.GetComponent<PocaAgent>().InformallyEndEpisode(true);
-                redAgent.GetComponent<PocaAgent>().InformallyEndEpisode(false);
-            } else if (redAgent.GetComponent<PocaAgent>().GetScore() > blueAgent.GetComponent<FoodCollectorAgent>().GetScore())
-            {
-                blueAgent.GetComponent<PocaAgent>().InformallyEndEpisode(false);
-                redAgent.GetComponent<PocaAgent>().InformallyEndEpisode(true);
-            } else
-            {
-                blueAgent.GetComponent<PocaAgent>().InformallyEndEpisode(false);
-                redAgent.GetComponent<PocaAgent>().InformallyEndEpisode(false);
+                item.gameObject.SetActive(false);
             }
-
+            m_AgentGroup.GroupEpisodeInterrupted();
+            ResetArea();
+        } else if (remainingFood <= 0)
+        {
+            OnCompletion();
+            foreach (var item in AgentsList)
+            {
+                item.gameObject.SetActive(false);
+            }
+            m_AgentGroup.EndGroupEpisode();
+            ResetArea();
         }
     }
 
-    public void DecrementFood()
+    public int[] GetScore()
     {
+        return new int[] {blueScore, redScore};
+    }
+
+    public void OnCorrectEaten(bool isBlueAgent)
+    {
+        m_AgentGroup.AddGroupReward(2f);
         remainingFood--;
+        if (isBlueAgent)
+        {
+            blueScore += 2;
+        } else
+        {
+            redScore += 2;
+        }
+    }
+
+    public void OnIncorrectEaten(bool isBlueAgent)
+    {
+        m_AgentGroup.AddGroupReward(-1f);
+        remainingFood--;
+        if (isBlueAgent)
+        {
+            blueScore++;
+        } else
+        {
+            redScore++;
+        }
+    }
+
+    public void OnCompletion()
+    {
+        m_AgentGroup.AddGroupReward(3f);
     }
 
     void CreateFood(int num, GameObject type)
@@ -47,7 +88,6 @@ public class PocaArea : Area
                 Random.Range(-range, range)) + transform.position,
                 Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 90f))) as GameObject;
             f.transform.parent = this.transform;
-            f.GetComponent<PocaFoodLogic>().myArea = this;
         }
     }
 
@@ -71,21 +111,39 @@ public class PocaArea : Area
         remainingFood = 50;
     }
 
-    public void ResetAgents(GameObject[] agents)
+    public void ResetAgents()
     {
-        foreach (GameObject agent in agents)
+        foreach (Agent agent in AgentsList)
         {
-            if (agent.transform.parent == gameObject.transform)
-            {
-                agent.transform.position = new Vector3(Random.Range(-range, range), 2f,
-                    Random.Range(-range, range))
-                    + transform.position;
-                agent.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
-            }
+            agent.transform.position = new Vector3(Random.Range(-range, range), 2f,
+                Random.Range(-range, range))
+                + transform.position;
+            agent.transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
         }
     }
 
     public override void ResetArea()
     {
+        //Reset Counter
+        m_ResetTimer = 0;
+
+        //Reset Score
+        blueScore = 0;
+        redScore = 0;
+
+        //Reset Area & Food
+        ResetFoodArea();
+
+        //Reset Agents
+        ResetAgents();
+
+        GameObject.Find("PocaSettings").GetComponent<PocaSettings>().IncrementAttempts();
+
+        m_AgentGroup = new SimpleMultiAgentGroup();
+        foreach (var item in AgentsList)
+        {
+            m_AgentGroup.RegisterAgent(item);
+            item.gameObject.SetActive(true);
+        }
     }
 }

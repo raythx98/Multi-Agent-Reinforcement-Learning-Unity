@@ -14,7 +14,6 @@ public class PocaAgent : Agent
     float m_FrozenTime;
     Rigidbody m_AgentRb;
     float m_LaserLength;
-    int score;
     // Speed of agent rotation.
     public float turnSpeed = 300;
 
@@ -40,7 +39,6 @@ public class PocaAgent : Agent
         m_ResetParams = Academy.Instance.EnvironmentParameters;
         m_Shoot = false;
         m_Frozen = false;
-        score = 0;
         SetResetParameters();
     }
 
@@ -57,11 +55,6 @@ public class PocaAgent : Agent
         {
             sensor.AddObservation(m_isBlue);
         }
-    }
-
-    public int GetScore()
-    {
-        return this.score;
     }
 
     public Color32 ToColor(int hexVal)
@@ -122,7 +115,6 @@ public class PocaAgent : Agent
             {
                 if (hit.collider.gameObject.CompareTag("agent"))
                 {
-                    AddReward(0.1f); // Encourage agents to shoot each other
                     hit.collider.gameObject.GetComponent<PocaAgent>().Freeze();
                 }
             }
@@ -153,15 +145,6 @@ public class PocaAgent : Agent
         MoveAgent(actionBuffers);
     }
 
-    public void InformallyEndEpisode(bool extraReward)
-    {
-        if (extraReward)
-        {
-            AddReward(3f); // Reward for winning
-        }
-        this.EndEpisode();
-    }
-
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var continuousActionsOut = actionsOut.ContinuousActions;
@@ -176,49 +159,35 @@ public class PocaAgent : Agent
     {
         Unfreeze();
         m_Shoot = false;
-        this.score = 0;
         m_AgentRb.velocity = Vector3.zero;
         myLaser.transform.localScale = new Vector3(0f, 0f, 0f);
-        transform.position = new Vector3(Random.Range(-m_MyArea.range, m_MyArea.range),
-            2f, Random.Range(-m_MyArea.range, m_MyArea.range))
-            + area.transform.position;
-        transform.rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0, 360)));
         SetResetParameters();
-        if (this.m_isBlue)
-        {
-            this.area.GetComponent<PocaArea>().ResetFoodArea();
-            GameObject.Find("PocaSettings").GetComponent<PocaSettings>().IncrementAttempts();
-        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("blue")) // Own colour, double the reward
+        if (collision.gameObject.CompareTag("blue"))
         {
             if (this.m_isBlue)
             {
+                m_MyArea.OnCorrectEaten(true);
                 collision.gameObject.GetComponent<PocaFoodLogic>().OnEaten();
-                AddReward(2.5f);
-                this.score += 2;
             } else
             {
+                m_MyArea.OnIncorrectEaten(false);
                 collision.gameObject.GetComponent<PocaFoodLogic>().OnEaten();
-                AddReward(0.5f);
-                this.score++;
             }
 
         } else if (collision.gameObject.CompareTag("red"))
         {
             if (!this.m_isBlue)
             {
-                collision.gameObject.GetComponent<PocaFoodLogic>().OnEaten(); // Own colour, double the reward
-                AddReward(2.5f);
-                this.score += 2;
+                m_MyArea.OnCorrectEaten(false);
+                collision.gameObject.GetComponent<PocaFoodLogic>().OnEaten();
             } else
             {
+                m_MyArea.OnIncorrectEaten(true);
                 collision.gameObject.GetComponent<PocaFoodLogic>().OnEaten();
-                AddReward(0.5f);
-                this.score++;
             }
 
         }

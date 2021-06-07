@@ -9,8 +9,7 @@ public class PocaSettings : MonoBehaviour
     [HideInInspector]
     public PocaArea[] listArea;
 
-    public GameObject observingBlue;
-    public GameObject observingRed;
+    public GameObject observingArea;
     public int highScore;
     public int attempts;
     public Text highscoreText;
@@ -34,13 +33,11 @@ public class PocaSettings : MonoBehaviour
         ClearObjects(GameObject.FindGameObjectsWithTag("blue"));
         ClearObjects(GameObject.FindGameObjectsWithTag("red"));
 
-        agents = GameObject.FindGameObjectsWithTag("agent");
         listArea = FindObjectsOfType<PocaArea>();
         foreach (var fa in listArea)
         {
-            fa.ResetFoodArea();
+            fa.ResetArea();
         }
-        listArea[0].ResetAgents(agents);
     }
 
     void ClearObjects(GameObject[] objects)
@@ -53,9 +50,9 @@ public class PocaSettings : MonoBehaviour
 
     public void Update()
     {
-        
-        int blue = observingBlue.GetComponent<PocaAgent>().GetScore();
-        int red = observingRed.GetComponent<PocaAgent>().GetScore();
+        int[] scores = observingArea.GetComponent<PocaArea>().GetScore();
+        int blue = scores[0];
+        int red = scores[1];
         int total = blue + red;
         if (total > highScore)
         {

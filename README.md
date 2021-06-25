@@ -6,7 +6,7 @@ If you have completed the installation process, look at the [getting started gui
 
 To install and use the ML-Agents Toolkit you will need to:
 
-- Install Unity (2019.4 or later)
+- Install Unity (2020.3.11f1 or later)
 - Install Python (3.6.1 or higher)
 - Clone this repository
   - __Note:__ If you do not clone the repository, then you will not be
@@ -15,7 +15,7 @@ To install and use the ML-Agents Toolkit you will need to:
 - Install the `com.unity.ml-agents` Unity package
 - Install the `mlagents` Python package
 
-### Install **Unity 2019.4** or Later
+### Install **Unity 2020.3.11f1** or Later
 
 [Download](https://unity3d.com/get-unity/download) and install Unity. I
 strongly recommend that you install Unity through the Unity Hub as it will
